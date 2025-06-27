@@ -29,3 +29,13 @@ function isAlphanumeric(charCode: number): boolean {
 function toLowerCase(charCode: number): number {
   return charCode >= 65 && charCode <= 90 ? charCode + 32 : charCode;
 }
+
+if (import.meta.vitest) {
+  const { test, expect } = await import('vitest');
+  
+  test('isPalindrome', () => {
+    expect(isPalindrome("A man, a plan, a canal: Panama")).toBe(true);
+    expect(isPalindrome("race a car")).toBe(false);
+    expect(isPalindrome(" ")).toBe(true);
+  });
+}

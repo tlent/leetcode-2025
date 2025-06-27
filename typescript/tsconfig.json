@@ -10,8 +10,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "exactOptionalPropertyTypes": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["vitest/importMeta"]
   },
-  "include": ["src/**/*", "tests/**/*"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }
