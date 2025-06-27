@@ -21,8 +21,8 @@ function twoSumSort(numbers: number[], target: number): number[] {
     const endValue = values[end]!; // eslint-disable-line @typescript-eslint/no-non-null-assertion
     const sum = startValue.number + endValue.number;
     if (sum === target) return [startValue.index, endValue.index];
-    if (sum < target) start += 1;
-    if (sum > target) end -= 1;
+    else if (sum < target) start += 1;
+    else end -= 1;
   }
   throw new Error("no solution found");
 }
