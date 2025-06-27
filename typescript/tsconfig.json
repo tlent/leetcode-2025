@@ -13,6 +13,6 @@
     "skipLibCheck": true,
     "types": ["vitest/importMeta"]
   },
-  "include": ["src/**/*"],
+  "include": ["**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

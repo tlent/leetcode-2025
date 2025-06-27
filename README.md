@@ -1,55 +1,36 @@
 # LeetCode Solutions 2025
 
-LeetCode solutions implemented in TypeScript and Python with optimal algorithms and idiomatic code patterns.
+LeetCode solutions implemented in TypeScript and Python with optimal algorithms and idiomatic clean code patterns.
 
-## Setup & Testing
+## Development Commands
 
 ### TypeScript
 ```bash
 cd typescript
-bun install
-bun lint
-bun type-check
-bun test
+
+# Development workflow
+bun install                 # Install dependencies
+bunx prettier -w .          # Format code
+bunx eslint                 # Lint code
+bunx tsc --noEmit          # Type check
+bunx vitest run            # Run tests
 ```
 
-### Python  
+### Python
 ```bash
 cd python
-uv sync --dev
-uv run ruff check
-uv run mypy src/
-uv run pytest
 
-uv run src/arrays_and_hashing/two_sum.py  # Run individual file tests
+# Development workflow
+uv sync --dev              # Install dependencies
+uv run ruff format         # Format code
+uv run ruff check          # Lint code
+uv run mypy src/           # Type check
+uv run pytest             # Run tests
 ```
 
-## Testing Approach
+## Testing & Benchmarking
 
 Tests are collocated with solutions to reduce file count and improve maintainability:
 
-- **Python**: Uses pytest-compatible `test_*` functions that can also run individually via `if __name__ == "__main__"`
-- **TypeScript**: Uses Vitest in-source testing with `import.meta.vitest`
-
-Each solution file is self-contained with both implementation and tests. You can run all tests with `pytest`/`bun test` or individual files directly.
-
-## LeetCode CLI Usage
-
-Install and setup:
-```bash
-npm install -g leetcode-cli
-leetcode user -l  # Login with credentials
-```
-
-Submit solutions:
-```bash
-# From typescript/ or python/
-leetcode submit ./src/arrays-and-hashing/two-sum.ts
-leetcode submit ./src/arrays_and_hashing/two_sum.py
-```
-
-View progress:
-```bash
-leetcode stat
-leetcode list
-```
+- **Python**: Uses pytest-compatible `test_*` functions
+- **TypeScript**: Uses Vitest in-source testing

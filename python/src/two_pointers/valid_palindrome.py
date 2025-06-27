@@ -4,19 +4,15 @@ def is_palindrome(s: str) -> bool:
 
 
 def is_palindrome_two_pointer(s: str) -> bool:
-    left, right = 0, len(s) - 1
+    clean = [c for c in s.lower() if c.isalnum()]
+    start = 0
+    end = len(clean) - 1
 
-    while left < right:
-        while left < right and not s[left].isalnum():
-            left += 1
-        while left < right and not s[right].isalnum():
-            right -= 1
-
-        if s[left].lower() != s[right].lower():
+    while start < end:
+        if clean[start] != clean[end]:
             return False
-
-        left += 1
-        right -= 1
+        start += 1
+        end -= 1
 
     return True
 
@@ -31,9 +27,3 @@ def test_is_palindrome_two_pointer() -> None:
     assert is_palindrome_two_pointer("A man, a plan, a canal: Panama")
     assert not is_palindrome_two_pointer("race a car")
     assert is_palindrome_two_pointer(" ")
-
-
-if __name__ == "__main__":
-    test_is_palindrome()
-    test_is_palindrome_two_pointer()
-    print("✓ Valid Palindrome tests passed!")

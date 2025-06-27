@@ -1,11 +1,11 @@
 function isPalindrome(s: string): boolean {
   let start = 0;
   let end = s.length - 1;
-  
+
   while (start < end) {
     const startCode = s.charCodeAt(start);
     const endCode = s.charCodeAt(end);
-    
+
     if (!isAlphanumeric(startCode)) {
       start++;
     } else if (!isAlphanumeric(endCode)) {
@@ -21,9 +21,11 @@ function isPalindrome(s: string): boolean {
 }
 
 function isAlphanumeric(charCode: number): boolean {
-  return (charCode >= 48 && charCode <= 57) || // 0-9
-         (charCode >= 65 && charCode <= 90) || // A-Z
-         (charCode >= 97 && charCode <= 122);  // a-z
+  return (
+    (charCode >= 48 && charCode <= 57) || // 0-9
+    (charCode >= 65 && charCode <= 90) || // A-Z
+    (charCode >= 97 && charCode <= 122) // a-z
+  );
 }
 
 function toLowerCase(charCode: number): number {
@@ -31,9 +33,9 @@ function toLowerCase(charCode: number): number {
 }
 
 if (import.meta.vitest) {
-  const { test, expect } = await import('vitest');
-  
-  test('isPalindrome', () => {
+  const { test, expect } = await import("vitest");
+
+  test("isPalindrome", () => {
     expect(isPalindrome("A man, a plan, a canal: Panama")).toBe(true);
     expect(isPalindrome("race a car")).toBe(false);
     expect(isPalindrome(" ")).toBe(true);

@@ -11,57 +11,67 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    
+
     - uses: oven-sh/setup-bun@v1
       with:
         bun-version: latest
-    
+
     - name: Install dependencies
       working-directory: ./typescript
       run: bun install
-    
+
+    - name: Format check
+      working-directory: ./typescript
+      run: bunx prettier --check .
+      continue-on-error: true
+
     - name: Lint
       working-directory: ./typescript
-      run: bun run lint
+      run: bunx eslint
       continue-on-error: true
-    
+
     - name: Type check
       working-directory: ./typescript
-      run: bun run type-check
+      run: bunx tsc --noEmit
       continue-on-error: true
-    
+
     - name: Test
       working-directory: ./typescript
-      run: bun test
+      run: bunx vitest
 
   python:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    
+
     - uses: astral-sh/setup-uv@v4
       with:
         version: "latest"
-    
+
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: "3.11"
-    
+
     - name: Install dependencies
       working-directory: ./python
       run: uv sync --dev
-    
+
+    - name: Format check
+      working-directory: ./python
+      run: uv run ruff format --check src/
+      continue-on-error: true
+
     - name: Lint
       working-directory: ./python
       run: uv run ruff check src/
       continue-on-error: true
-    
+
     - name: Type check
       working-directory: ./python
       run: uv run mypy src/
       continue-on-error: true
-    
+
     - name: Test
       working-directory: ./python
       run: uv run pytest
