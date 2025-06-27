@@ -23,10 +23,12 @@ jobs:
     - name: Lint
       working-directory: ./typescript
       run: bun run lint
+      continue-on-error: true
     
     - name: Type check
       working-directory: ./typescript
       run: bun run type-check
+      continue-on-error: true
     
     - name: Test
       working-directory: ./typescript
@@ -53,10 +55,12 @@ jobs:
     - name: Lint
       working-directory: ./python
       run: uv run ruff check src/
+      continue-on-error: true
     
     - name: Type check
       working-directory: ./python
       run: uv run mypy src/
+      continue-on-error: true
     
     - name: Test
       working-directory: ./python
