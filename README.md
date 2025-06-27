@@ -1,10 +1,12 @@
 # LeetCode Solutions 2025
 
-LeetCode solutions implemented in TypeScript and Python with optimal algorithms and idiomatic clean code patterns.
+LeetCode solutions implemented in Rust, TypeScript, and Python with optimal
+algorithms and idiomatic clean code patterns.
 
 ## Development Commands
 
 ### Rust
+
 ```bash
 cd rust
 
@@ -16,6 +18,7 @@ cargo test    # Run tests
 ```
 
 ### TypeScript
+
 ```bash
 cd typescript
 
@@ -28,6 +31,7 @@ bunx vitest run     # Run tests
 ```
 
 ### Python
+
 ```bash
 cd python
 
@@ -41,7 +45,8 @@ uv run pytest       # Run tests
 
 ## Testing & Benchmarking
 
-Tests are collocated with solutions to reduce file count and improve maintainability:
+Tests are collocated with solutions to reduce file count and improve
+maintainability:
 
 - **Rust**: Uses Cargo test with test module in each source file
 - **TypeScript**: Uses Vitest in-source testing in each source file
