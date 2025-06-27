@@ -1,22 +1,26 @@
 function twoSum(numbers: number[], target: number): number[] {
-  const seen = new Map();
+  const seen = new Map<number, number>();
   for (const [index, number] of numbers.entries()) {
     const complement = target - number;
-    if (seen.has(complement)) return [seen.get(complement), index];
+    const complementIndex = seen.get(complement);
+    if (complementIndex !== undefined) return [complementIndex, index];
     seen.set(number, index);
   }
   throw new Error("no solution found");
 }
 
 function twoSumSort(numbers: number[], target: number): number[] {
-  const pairs = numbers
-    .map((value, index) => ({ value, index }))
-    .sort((a, b) => a.value - b.value);
+  const values = numbers
+    .map((number, index) => ({ number, index }))
+    .sort((a, b) => a.number - b.number);
   let start = 0;
-  let end = pairs.length - 1;
+  let end = values.length - 1;
   while (start < end) {
-    const sum = pairs[start]!.value + pairs[end]!.value;
-    if (sum === target) return [pairs[start]!.index, pairs[end]!.index];
+    // Non-null assertions are safe because 0 <= start < end < values.length
+    const startValue = values[start]!; // eslint-disable-line @typescript-eslint/no-non-null-assertion
+    const endValue = values[end]!; // eslint-disable-line @typescript-eslint/no-non-null-assertion
+    const sum = startValue.number + endValue.number;
+    if (sum === target) return [startValue.index, endValue.index];
     if (sum < target) start += 1;
     if (sum > target) end -= 1;
   }
