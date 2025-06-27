@@ -43,7 +43,7 @@ uv run mypy src/    # Type check
 uv run pytest       # Run tests
 ```
 
-## Testing & Benchmarking
+## Testing
 
 Tests are collocated with solutions to reduce file count and improve
 maintainability:
