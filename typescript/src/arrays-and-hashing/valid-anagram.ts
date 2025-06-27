@@ -1,14 +1,17 @@
 function isAnagram(s: string, t: string): boolean {
+  if (s.length !== t.length) return false;
   const sCounts = countCharacters(s);
   const tCounts = countCharacters(t);
   return arrayEquals(sCounts, tCounts);
 }
 
 function countCharacters(s: string): number[] {
-  const counts = new Array<number>(26);
+  const counts = new Array<number>(26).fill(0);
   for (const c of s) {
     const index = c.charCodeAt(0) - 97;
-    counts[index] = (counts[index] ?? 0) + 1;
+    // Non-null assertion is safe: c is guaranteed to be a lowercase letter so 0 <= index < 26
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    counts[index]!++;
   }
   return counts;
 }
