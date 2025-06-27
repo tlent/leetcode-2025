@@ -35,6 +35,7 @@ uv run pytest             # Run tests
 - Use optimal time/space complexity algorithms
 - Provide multiple solution approaches when beneficial
 - Use descriptive variable names
+- Code should always be simple and clean
 
 ### TypeScript
 - Use Vitest in-source testing with `import.meta.vitest`
