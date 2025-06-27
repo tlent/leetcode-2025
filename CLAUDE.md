@@ -70,7 +70,7 @@ uv run pytest
 
 ## Solution Patterns
 
-Collection helpful notes here of solution patterns we discover
+Collect helpful notes here of solution patterns we discover
 
 ### Arrays & Hashing
 - Use `Set` for deduplication and O(1) lookups
