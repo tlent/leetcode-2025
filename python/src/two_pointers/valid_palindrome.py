@@ -6,7 +6,7 @@ def is_palindrome(s: str) -> bool:
 def is_palindrome_two_pointer(s: str) -> bool:
     start = 0
     end = len(s) - 1
-    
+
     while start < end:
         if not s[start].isalnum():
             start += 1
@@ -17,7 +17,7 @@ def is_palindrome_two_pointer(s: str) -> bool:
         else:
             start += 1
             end -= 1
-    
+
     return True
 
 
