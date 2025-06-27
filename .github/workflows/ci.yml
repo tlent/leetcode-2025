@@ -1,14 +1,50 @@
-name: LeetCode Solutions Test
+name: CI
 
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'typescript/**'
+      - 'python/**'
+      - 'rust/**'
+      - '.github/workflows/ci.yml'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'typescript/**'
+      - 'python/**'
+      - 'rust/**'
+      - '.github/workflows/ci.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  typescript:
+  detect-changes:
     runs-on: ubuntu-latest
+    outputs:
+      typescript: ${{ steps.changes.outputs.typescript }}
+      python: ${{ steps.changes.outputs.python }}
+      rust: ${{ steps.changes.outputs.rust }}
+    steps:
+    - uses: actions/checkout@v4
+    - uses: dorny/paths-filter@v3
+      id: changes
+      with:
+        filters: |
+          typescript:
+            - 'typescript/**'
+          python:
+            - 'python/**'
+          rust:
+            - 'rust/**'
+
+  typescript:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.typescript == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
     - uses: actions/checkout@v4
 
@@ -16,37 +52,56 @@ jobs:
       with:
         bun-version: latest
 
+    - name: Cache bun dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.bun/install/cache
+          typescript/node_modules
+        key: ${{ runner.os }}-bun-${{ hashFiles('typescript/bun.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-bun-
+
     - name: Install dependencies
       working-directory: ./typescript
       run: bun install
 
-    - name: Format check
+    - name: Run checks in parallel
       working-directory: ./typescript
-      run: bunx prettier --check .
-      continue-on-error: true
+      run: |
+        set +e
+        bunx prettier --check . &
+        PRETTIER_PID=$!
+        bunx eslint &
+        ESLINT_PID=$!
+        bunx tsc --noEmit &
+        TSC_PID=$!
 
-    - name: Lint
-      working-directory: ./typescript
-      run: bunx eslint
-      continue-on-error: true
+        wait $PRETTIER_PID; PRETTIER_CODE=$?
+        wait $ESLINT_PID; ESLINT_CODE=$?
+        wait $TSC_PID; TSC_CODE=$?
 
-    - name: Type check
-      working-directory: ./typescript
-      run: bunx tsc --noEmit
-      continue-on-error: true
+        if [ $PRETTIER_CODE -ne 0 ]; then echo "::warning::Prettier check failed"; fi
+        if [ $ESLINT_CODE -ne 0 ]; then echo "::warning::ESLint check failed"; fi
+        if [ $TSC_CODE -ne 0 ]; then echo "::warning::TypeScript check failed"; fi
 
     - name: Test
       working-directory: ./typescript
-      run: bunx vitest
+      run: bunx vitest run --reporter=verbose
 
   python:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.python == 'true'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
     - uses: actions/checkout@v4
 
     - uses: astral-sh/setup-uv@v4
       with:
         version: "latest"
+        enable-cache: true
+        cache-dependency-glob: "python/uv.lock"
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -57,27 +112,34 @@ jobs:
       working-directory: ./python
       run: uv sync --dev
 
-    - name: Format check
+    - name: Run checks in parallel
       working-directory: ./python
-      run: uv run ruff format --check src/
-      continue-on-error: true
-
-    - name: Lint
-      working-directory: ./python
-      run: uv run ruff check src/
-      continue-on-error: true
-
-    - name: Type check
-      working-directory: ./python
-      run: uv run mypy src/
-      continue-on-error: true
+      run: |
+        set +e
+        uv run ruff format --check src/ &
+        FORMAT_PID=$!
+        uv run ruff check src/ &
+        LINT_PID=$!
+        uv run mypy src/ &
+        MYPY_PID=$!
+        
+        wait $FORMAT_PID; FORMAT_CODE=$?
+        wait $LINT_PID; LINT_CODE=$?
+        wait $MYPY_PID; MYPY_CODE=$?
+        
+        if [ $FORMAT_CODE -ne 0 ]; then echo "::warning::Ruff format check failed"; fi
+        if [ $LINT_CODE -ne 0 ]; then echo "::warning::Ruff lint check failed"; fi
+        if [ $MYPY_CODE -ne 0 ]; then echo "::warning::MyPy check failed"; fi
 
     - name: Test
       working-directory: ./python
-      run: uv run pytest
+      run: uv run pytest -v
 
   rust:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.rust == 'true'
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
     - uses: actions/checkout@v4
 
@@ -89,16 +151,21 @@ jobs:
       with:
         workspaces: rust
 
-    - name: Format check
+    - name: Run checks in parallel
       working-directory: ./rust
-      run: cargo fmt --check
-      continue-on-error: true
-
-    - name: Lint
-      working-directory: ./rust
-      run: cargo clippy -- -D warnings
-      continue-on-error: true
+      run: |
+        set +e
+        cargo fmt --check &
+        FMT_PID=$!
+        cargo clippy -- -D warnings &
+        CLIPPY_PID=$!
+        
+        wait $FMT_PID; FMT_CODE=$?
+        wait $CLIPPY_PID; CLIPPY_CODE=$?
+        
+        if [ $FMT_CODE -ne 0 ]; then echo "::warning::Cargo fmt check failed"; fi
+        if [ $CLIPPY_CODE -ne 0 ]; then echo "::warning::Clippy check failed"; fi
 
     - name: Test
       working-directory: ./rust
-      run: cargo test
+      run: cargo test --verbose
