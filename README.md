@@ -4,16 +4,27 @@ LeetCode solutions implemented in TypeScript and Python with optimal algorithms 
 
 ## Development Commands
 
+### Rust
+```bash
+cd rust
+
+# Development workflow
+cargo fmt     # Format code
+cargo clippy  # Lint code
+cargo check   # Type check
+cargo test    # Run tests
+```
+
 ### TypeScript
 ```bash
 cd typescript
 
 # Development workflow
-bun install                 # Install dependencies
-bunx prettier -w .          # Format code
-bunx eslint                 # Lint code
-bunx tsc --noEmit          # Type check
-bunx vitest run            # Run tests
+bun install         # Install dependencies
+bunx prettier -w .  # Format code
+bunx eslint         # Lint code
+bunx tsc --noEmit   # Type check
+bunx vitest run     # Run tests
 ```
 
 ### Python
@@ -21,16 +32,17 @@ bunx vitest run            # Run tests
 cd python
 
 # Development workflow
-uv sync --dev              # Install dependencies
-uv run ruff format         # Format code
-uv run ruff check          # Lint code
-uv run mypy src/           # Type check
-uv run pytest             # Run tests
+uv sync --dev       # Install dependencies
+uv run ruff format  # Format code
+uv run ruff check   # Lint code
+uv run mypy src/    # Type check
+uv run pytest       # Run tests
 ```
 
 ## Testing & Benchmarking
 
 Tests are collocated with solutions to reduce file count and improve maintainability:
 
-- **Python**: Uses pytest-compatible `test_*` functions
-- **TypeScript**: Uses Vitest in-source testing
+- **Rust**: Uses Cargo test with test module in each source file
+- **TypeScript**: Uses Vitest in-source testing in each source file
+- **Python**: Uses pytest-compatible `test_*` functions in each source file

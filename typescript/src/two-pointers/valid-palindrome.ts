@@ -3,14 +3,15 @@ function isPalindrome(s: string): boolean {
   let end = s.length - 1;
 
   while (start < end) {
-    const startCode = s.charCodeAt(start);
-    const endCode = s.charCodeAt(end);
-
-    if (!isAlphanumeric(startCode)) {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const a = s[start]!;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const b = s[end]!;
+    if (!isAlphanumeric(a)) {
       start++;
-    } else if (!isAlphanumeric(endCode)) {
+    } else if (!isAlphanumeric(b)) {
       end--;
-    } else if (toLowerCase(startCode) !== toLowerCase(endCode)) {
+    } else if (a.toLowerCase() !== b.toLowerCase()) {
       return false;
     } else {
       start++;
@@ -20,16 +21,12 @@ function isPalindrome(s: string): boolean {
   return true;
 }
 
-function isAlphanumeric(charCode: number): boolean {
+function isAlphanumeric(character: string): boolean {
   return (
-    (charCode >= 48 && charCode <= 57) || // 0-9
-    (charCode >= 65 && charCode <= 90) || // A-Z
-    (charCode >= 97 && charCode <= 122) // a-z
+    ("a" <= character && character <= "z") ||
+    ("A" <= character && character <= "Z") ||
+    ("0" <= character && character <= "9")
   );
-}
-
-function toLowerCase(charCode: number): number {
-  return charCode >= 65 && charCode <= 90 ? charCode + 32 : charCode;
 }
 
 if (import.meta.vitest) {

@@ -4,16 +4,20 @@ def is_palindrome(s: str) -> bool:
 
 
 def is_palindrome_two_pointer(s: str) -> bool:
-    clean = [c for c in s.lower() if c.isalnum()]
     start = 0
-    end = len(clean) - 1
-
+    end = len(s) - 1
+    
     while start < end:
-        if clean[start] != clean[end]:
+        if not s[start].isalnum():
+            start += 1
+        elif not s[end].isalnum():
+            end -= 1
+        elif s[start].lower() != s[end].lower():
             return False
-        start += 1
-        end -= 1
-
+        else:
+            start += 1
+            end -= 1
+    
     return True
 
 

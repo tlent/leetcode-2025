@@ -35,6 +35,9 @@ coverage/
 .pytest_cache/
 .ruff_cache/
 
+# Rust
+target/
+
 # Misc
 .env
 .env.local
