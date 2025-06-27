@@ -3,9 +3,7 @@ function isPalindrome(s: string): boolean {
   let end = s.length - 1;
 
   while (start < end) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const a = s[start]!;
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const b = s[end]!;
     if (!isAlphanumeric(a)) {
       start++;

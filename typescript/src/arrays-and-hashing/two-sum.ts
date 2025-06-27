@@ -16,10 +16,7 @@ function twoSumSort(numbers: number[], target: number): number[] {
   let start = 0;
   let end = values.length - 1;
   while (start < end) {
-    // Non-null assertions are safe because 0 <= start < end < values.length
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const startValue = values[start]!;
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const endValue = values[end]!;
     const sum = startValue.number + endValue.number;
     if (sum === target) return [startValue.index, endValue.index];

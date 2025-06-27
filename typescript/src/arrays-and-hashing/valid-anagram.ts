@@ -3,15 +3,11 @@ function isAnagram(s: string, t: string): boolean {
 
   const counts = new Array<number>(26).fill(0);
   for (const c of s) {
-    // Safe: c is guaranteed to be lowercase letter, so 0 <= index < 26
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     counts[c.charCodeAt(0) - 97]!++;
   }
   for (const c of t) {
     const index = c.charCodeAt(0) - 97;
     if (counts[index] === 0) return false;
-    // Safe: c is guaranteed to be lowercase letter, so 0 <= index < 26
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     counts[index]!--;
   }
 
