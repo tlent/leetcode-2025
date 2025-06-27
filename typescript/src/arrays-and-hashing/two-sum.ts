@@ -13,8 +13,8 @@ function twoSumSort(numbers: number[], target: number): number[] {
   let start = 0;
   let end = pairs.length - 1;
   while (start < end) {
-    const sum = pairs[start].value + pairs[end].value;
-    if (sum === target) return [pairs[start].index, pairs[end].index];
+    const sum = pairs[start]!.value + pairs[end]!.value;
+    if (sum === target) return [pairs[start]!.index, pairs[end]!.index];
     if (sum < target) start += 1;
     if (sum > target) end -= 1;
   }
