@@ -1,22 +1,31 @@
 function isPalindrome(s: string): boolean {
-  s = s.toLowerCase();
   let start = 0;
   let end = s.length - 1;
+  
   while (start < end) {
-    if (!isAlphanumeric(s.charCodeAt(start))) {
-      start += 1;
-    } else if (!isAlphanumeric(s.charCodeAt(end))) {
-      end -= 1;
-    } else if (s.charAt(start) === s.charAt(end)) {
-      start += 1;
-      end -= 1;
-    } else {
+    const startCode = s.charCodeAt(start);
+    const endCode = s.charCodeAt(end);
+    
+    if (!isAlphanumeric(startCode)) {
+      start++;
+    } else if (!isAlphanumeric(endCode)) {
+      end--;
+    } else if (toLowerCase(startCode) !== toLowerCase(endCode)) {
       return false;
+    } else {
+      start++;
+      end--;
     }
   }
   return true;
 }
 
 function isAlphanumeric(charCode: number): boolean {
-  return (charCode >= 97 && charCode <= 122) || (charCode >= 48 && charCode <= 57);
+  return (charCode >= 48 && charCode <= 57) || // 0-9
+         (charCode >= 65 && charCode <= 90) || // A-Z
+         (charCode >= 97 && charCode <= 122);  // a-z
+}
+
+function toLowerCase(charCode: number): number {
+  return charCode >= 65 && charCode <= 90 ? charCode + 32 : charCode;
 }
