@@ -1,15 +1,7 @@
-from __future__ import annotations
-from typing import Optional
+from list import ListNode, List
 
 
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val: int = 0, next: Optional[ListNode] = None):
-        self.val = val
-        self.next = next
-
-
-def reverse_list(head: Optional[ListNode]) -> Optional[ListNode]:
+def reverse_list(head: List) -> List:
     prev = None
     cursor = head
     while cursor:
@@ -20,7 +12,7 @@ def reverse_list(head: Optional[ListNode]) -> Optional[ListNode]:
     return prev
 
 
-def reverse_list_recursive(head: Optional[ListNode]) -> Optional[ListNode]:
+def reverse_list_recursive(head: List) -> List:
     if not head or not head.next:
         return head
 
@@ -31,32 +23,12 @@ def reverse_list_recursive(head: Optional[ListNode]) -> Optional[ListNode]:
 
 
 def test_reverse_list() -> None:
-    list = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
-
-    expected: Optional[ListNode] = ListNode(
-        5, ListNode(4, ListNode(3, ListNode(2, ListNode(1))))
-    )
-    actual = reverse_list(list)
-
-    while expected and actual:
-        assert expected.val == actual.val
-        expected = expected.next
-        actual = actual.next
-    assert expected is None
-    assert actual is None
+    result = reverse_list(ListNode.from_iterable(range(5)))
+    assert result is not None
+    assert list(result) == list(reversed(range(5)))
 
 
 def test_reverse_list_recursive() -> None:
-    list = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
-
-    expected: Optional[ListNode] = ListNode(
-        5, ListNode(4, ListNode(3, ListNode(2, ListNode(1))))
-    )
-    actual = reverse_list_recursive(list)
-
-    while expected and actual:
-        assert expected.val == actual.val
-        expected = expected.next
-        actual = actual.next
-    assert expected is None
-    assert actual is None
+    result = reverse_list_recursive(ListNode.from_iterable(range(5)))
+    assert result is not None
+    assert list(result) == list(reversed(range(5)))

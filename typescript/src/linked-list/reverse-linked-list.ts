@@ -1,14 +1,6 @@
-class ListNode {
-  val: number;
-  next: ListNode | null;
+import { List, ListNode } from "./list";
 
-  constructor(val = 0, next: ListNode | null = null) {
-    this.val = val;
-    this.next = next;
-  }
-}
-
-function reverseList(head: ListNode | null): ListNode | null {
+function reverseList(head: List): List {
   let prev = null;
   let cursor = head;
   while (cursor) {
@@ -20,11 +12,10 @@ function reverseList(head: ListNode | null): ListNode | null {
   return prev;
 }
 
-function reverseListRecursive(head: ListNode | null): ListNode | null {
+function reverseListRecursive(head: List): List {
   if (!head?.next) {
     return head;
   }
-
   const newHead = reverseListRecursive(head.next);
   head.next.next = head;
   head.next = null;
@@ -35,46 +26,12 @@ if (import.meta.vitest) {
   const { test, expect } = await import("vitest");
 
   test("reverseList", () => {
-    const list = new ListNode(
-      1,
-      new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))),
-    );
-
-    let expected: ListNode | null = new ListNode(
-      5,
-      new ListNode(4, new ListNode(3, new ListNode(2, new ListNode(1)))),
-    );
-    let actual = reverseList(list);
-
-    while (expected && actual) {
-      expect(expected.val).toEqual(actual.val);
-      expected = expected.next;
-      actual = actual.next;
-    }
-
-    expect(expected).toBeNull();
-    expect(actual).toBeNull();
+    const list = ListNode.from([1, 2, 3, 4, 5]);
+    expect(Array.from(reverseList(list)!)).toEqual([5, 4, 3, 2, 1]);
   });
 
   test("reverseListRecursive", () => {
-    const list = new ListNode(
-      1,
-      new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))),
-    );
-
-    let expected: ListNode | null = new ListNode(
-      5,
-      new ListNode(4, new ListNode(3, new ListNode(2, new ListNode(1)))),
-    );
-    let actual = reverseListRecursive(list);
-
-    while (expected && actual) {
-      expect(expected.val).toEqual(actual.val);
-      expected = expected.next;
-      actual = actual.next;
-    }
-
-    expect(expected).toBeNull();
-    expect(actual).toBeNull();
+    const list = ListNode.from([1, 2, 3, 4, 5]);
+    expect(Array.from(reverseListRecursive(list)!)).toEqual([5, 4, 3, 2, 1]);
   });
 }
