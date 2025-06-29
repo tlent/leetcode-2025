@@ -21,7 +21,7 @@ pub fn merge(mut a: BoxList, mut b: BoxList) -> BoxList {
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     use super::*;
 
     #[test]

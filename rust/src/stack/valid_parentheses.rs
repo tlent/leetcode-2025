@@ -16,7 +16,7 @@ pub fn valid_parentheses(s: &str) -> bool {
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     use super::*;
 
     #[test]

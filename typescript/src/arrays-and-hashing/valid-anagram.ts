@@ -1,4 +1,4 @@
-function isAnagram(s: string, t: string): boolean {
+export function isAnagram(s: string, t: string): boolean {
   if (s.length !== t.length) return false;
 
   const counts = new Array<number>(26).fill(0);
@@ -14,13 +14,3 @@ function isAnagram(s: string, t: string): boolean {
   return true;
 }
 
-if (import.meta.vitest) {
-  const { test, expect } = await import("vitest");
-
-  test("isAnagram", () => {
-    expect(isAnagram("anagram", "nagaram")).toBe(true);
-    expect(isAnagram("rat", "car")).toBe(false);
-    expect(isAnagram("listen", "silent")).toBe(true);
-    expect(isAnagram("a", "ab")).toBe(false);
-  });
-}

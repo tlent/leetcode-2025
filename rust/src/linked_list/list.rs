@@ -102,3 +102,50 @@ pub mod test_utils {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_box_list_from_values() {
+        let list = BoxListNode::from_values([1, 2, 3]);
+        assert!(list.is_some());
+        let values: Vec<i32> = list.unwrap().values().collect();
+        assert_eq!(values, vec![1, 2, 3]);
+    }
+
+    #[test]
+    fn test_box_list_empty() {
+        let list = BoxListNode::from_values([]);
+        assert!(list.is_none());
+    }
+
+    #[test]
+    fn test_box_list_nodes_iterator() {
+        let list = BoxListNode::from_values([1, 2, 3]).unwrap();
+        let node_count = list.nodes().count();
+        assert_eq!(node_count, 3);
+    }
+
+    #[test]
+    fn test_rc_list_from_values() {
+        let list = RcListNode::from_values([1, 2, 3]);
+        assert!(list.is_some());
+        let values: Vec<i32> = RcListNode::values(&list.unwrap()).collect();
+        assert_eq!(values, vec![1, 2, 3]);
+    }
+
+    #[test]
+    fn test_rc_list_empty() {
+        let list = RcListNode::from_values([]);
+        assert!(list.is_none());
+    }
+
+    #[test]
+    fn test_rc_list_nodes_iterator() {
+        let list = RcListNode::from_values([1, 2, 3]).unwrap();
+        let node_count = RcListNode::nodes(&list).count();
+        assert_eq!(node_count, 3);
+    }
+}

@@ -1,6 +1,6 @@
-import { List, ListNode } from "./list";
+import { List } from "./list";
 
-function reverseList(head: List): List {
+export function reverseList(head: List): List {
   let prev = null;
   let cursor = head;
   while (cursor) {
@@ -12,7 +12,7 @@ function reverseList(head: List): List {
   return prev;
 }
 
-function reverseListRecursive(head: List): List {
+export function reverseListRecursive(head: List): List {
   if (!head?.next) {
     return head;
   }
@@ -22,18 +22,3 @@ function reverseListRecursive(head: List): List {
   return newHead;
 }
 
-if (import.meta.vitest) {
-  const { test, expect } = await import("vitest");
-
-  test("reverseList", () => {
-    const list = ListNode.from_values([1, 2, 3, 4, 5]);
-    const reversed = reverseList(list);
-    expect(Array.from(reversed!.values())).toEqual([5, 4, 3, 2, 1]);
-  });
-
-  test("reverseListRecursive", () => {
-    const list = ListNode.from_values([1, 2, 3, 4, 5]);
-    const reversed = reverseListRecursive(list);
-    expect(Array.from(reversed!.values())).toEqual([5, 4, 3, 2, 1]);
-  });
-}

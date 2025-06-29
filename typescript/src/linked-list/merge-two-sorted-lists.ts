@@ -1,6 +1,6 @@
 import { List, ListNode } from "./list";
 
-function merge(a: List, b: List): List {
+export function merge(a: List, b: List): List {
   const head = new ListNode();
   let cursor = head;
   while (a && b) {
@@ -17,13 +17,3 @@ function merge(a: List, b: List): List {
   return head.next;
 }
 
-if (import.meta.vitest) {
-  const { test, expect } = await import("vitest");
-
-  test("merge", () => {
-    const a = ListNode.from_values([1, 2, 4]);
-    const b = ListNode.from_values([1, 3, 4]);
-    const result = merge(a, b);
-    expect(Array.from(result!.values())).toEqual([1, 1, 2, 3, 4, 4]);
-  });
-}

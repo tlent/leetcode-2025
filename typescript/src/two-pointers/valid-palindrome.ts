@@ -1,4 +1,4 @@
-function isPalindrome(s: string): boolean {
+export function isPalindrome(s: string): boolean {
   let start = 0;
   let end = s.length - 1;
 
@@ -27,12 +27,3 @@ function isAlphanumeric(character: string): boolean {
   );
 }
 
-if (import.meta.vitest) {
-  const { test, expect } = await import("vitest");
-
-  test("isPalindrome", () => {
-    expect(isPalindrome("A man, a plan, a canal: Panama")).toBe(true);
-    expect(isPalindrome("race a car")).toBe(false);
-    expect(isPalindrome(" ")).toBe(true);
-  });
-}

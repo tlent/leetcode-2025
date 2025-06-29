@@ -69,8 +69,27 @@ uv run pytest             # Run tests
 
 ## Testing Approach
 
-- **Collocated tests**: Tests live alongside implementation
-- **Coverage**: Example test cases from leetcode
+Each language follows its idiomatic testing patterns:
+
+### TypeScript
+- **Separate test files**: `.test.ts` files alongside implementations
+- **Test utilities**: Shared helpers in `src/test-utils.ts` for complex setups
+- **Vitest framework**: Standard testing framework with separate test files
+
+### Python
+- **Separate test files**: `test_*.py` files alongside implementations in `src/`
+- **pytest framework**: Standard Python testing with automatic discovery
+- **Clean imports**: Import functions directly from implementation modules
+
+### Rust
+- **Inline test modules**: `#[cfg(test)] mod tests` in each source file (idiomatic)
+- **Standardized naming**: All test modules use `mod tests` (plural)
+- **Comprehensive coverage**: Including utility function tests in `list.rs`
+
+### Coverage
+- **LeetCode examples**: All test cases use actual LeetCode problem examples
+- **Edge cases**: Multiple test scenarios per algorithm variant
+- **Clean separation**: Implementation files contain only logic, no test code
 
 ## Quality Checks
 

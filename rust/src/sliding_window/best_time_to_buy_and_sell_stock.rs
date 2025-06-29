@@ -9,7 +9,7 @@ pub fn max_profit(prices: &[i32]) -> i32 {
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     use super::*;
 
     #[test]

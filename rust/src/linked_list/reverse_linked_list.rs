@@ -42,7 +42,7 @@ pub fn reverse_list_recursive(head: BoxList) -> BoxList {
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     use crate::linked_list::list::BoxListNode;
 
     use super::*;

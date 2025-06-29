@@ -45,9 +45,10 @@ uv run pytest       # Run tests
 
 ## Testing
 
-Tests are collocated with solutions to reduce file count and improve
-maintainability:
+Each language follows its idiomatic testing patterns:
 
-- **Rust**: Uses Cargo test with test module in each source file
-- **TypeScript**: Uses Vitest in-source testing in each source file
-- **Python**: Uses pytest-compatible `test_*` functions in each source file
+- **Rust**: Inline `#[cfg(test)]` modules in source files (idiomatic Rust approach)
+- **TypeScript**: Separate `.test.ts` files alongside implementations
+- **Python**: Separate `test_*.py` files alongside implementations
+
+This approach provides clean separation between implementation and tests while maintaining discoverability and organization.
