@@ -48,7 +48,7 @@ pub fn reverse_list_recursive(head: Option<Box<ListNode>>) -> Option<Box<ListNod
                     Some(node)
                 }
             }
-        }
+        },
     }
 }
 
