@@ -1,7 +1,7 @@
 class ListNode {
   val: number;
   next: ListNode | null;
-  
+
   constructor(val = 0, next: ListNode | null = null) {
     this.val = val;
     this.next = next;
@@ -35,9 +35,15 @@ if (import.meta.vitest) {
   const { test, expect } = await import("vitest");
 
   test("reverseList", () => {
-    const list = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
+    const list = new ListNode(
+      1,
+      new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))),
+    );
 
-    let expected: ListNode | null = new ListNode(5, new ListNode(4, new ListNode(3, new ListNode(2, new ListNode(1)))));
+    let expected: ListNode | null = new ListNode(
+      5,
+      new ListNode(4, new ListNode(3, new ListNode(2, new ListNode(1)))),
+    );
     let actual = reverseList(list);
 
     while (expected && actual) {
@@ -51,9 +57,15 @@ if (import.meta.vitest) {
   });
 
   test("reverseListRecursive", () => {
-    const list = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
+    const list = new ListNode(
+      1,
+      new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))),
+    );
 
-    let expected: ListNode | null = new ListNode(5, new ListNode(4, new ListNode(3, new ListNode(2, new ListNode(1)))));
+    let expected: ListNode | null = new ListNode(
+      5,
+      new ListNode(4, new ListNode(3, new ListNode(2, new ListNode(1)))),
+    );
     let actual = reverseListRecursive(list);
 
     while (expected && actual) {
