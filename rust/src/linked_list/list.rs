@@ -1,48 +1,105 @@
-pub type List = Option<Box<ListNode>>;
+use std::cell::RefCell;
+use std::rc::Rc;
+
+pub type BoxList = Option<Box<BoxListNode>>;
+pub type RcList = Option<Rc<RefCell<RcListNode>>>;
 
 #[derive(PartialEq, Eq, Clone, Debug, Default)]
-pub struct ListNode {
+pub struct BoxListNode {
     pub val: i32,
-    pub next: List,
+    pub next: BoxList,
 }
 
-impl ListNode {
+impl BoxListNode {
     #[inline]
-    pub fn new(val: i32, next: List) -> Self {
-        ListNode { next, val }
+    pub fn new(val: i32) -> Self {
+        BoxListNode { next: None, val }
     }
 
-    pub fn iter(&self) -> ListIter {
-        ListIter { cursor: Some(self) }
+    pub fn iter_nodes(&self) -> impl Iterator<Item = &Self> {
+        std::iter::successors(Some(self), |node| node.next.as_deref())
     }
-}
 
-impl FromIterator<i32> for ListNode {
-    fn from_iter<T: IntoIterator<Item = i32>>(iter: T) -> Self {
-        let mut head = ListNode::default();
+    pub fn values(&self) -> impl Iterator<Item = i32> {
+        self.iter_nodes().map(|node| node.val)
+    }
+
+    /// Create a linked list from an iterator
+    pub fn from_values<T: IntoIterator<Item = i32>>(iter: T) -> BoxList {
+        let mut head = BoxListNode::default();
         let mut cursor = &mut head;
         for val in iter {
-            cursor.next = Some(Box::new(ListNode::new(val, None)));
+            cursor.next = Some(Box::new(BoxListNode::new(val)));
             cursor = cursor.next.as_mut().unwrap();
         }
-        *head.next.unwrap()
+        head.next
     }
 }
 
-pub struct ListIter<'a> {
-    cursor: Option<&'a ListNode>,
+#[derive(PartialEq, Eq, Clone, Debug, Default)]
+pub struct RcListNode {
+    pub val: i32,
+    pub next: RcList,
 }
 
-impl<'a> Iterator for ListIter<'a> {
-    type Item = i32;
+impl RcListNode {
+    pub fn new(val: i32) -> Self {
+        RcListNode { val, next: None }
+    }
 
-    fn next(&mut self) -> Option<Self::Item> {
-        match self.cursor {
-            Some(node) => {
-                self.cursor = node.next.as_ref().map(|b| b.as_ref());
-                Some(node.val)
-            }
-            None => None,
+    pub fn iter_nodes(head: &Rc<RefCell<Self>>) -> impl Iterator<Item = Rc<RefCell<RcListNode>>> {
+        let mut current = Some(head.clone());
+        std::iter::from_fn(move || {
+            current.take().inspect(|node| {
+                current = node.borrow().next.clone();
+            })
+        })
+    }
+
+    pub fn values(head: &Rc<RefCell<Self>>) -> impl Iterator<Item = i32> {
+        Self::iter_nodes(head).map(|node| node.borrow().val)
+    }
+
+    /// Create a linked list from an iterator
+    pub fn from_values<T: IntoIterator<Item = i32>>(iter: T) -> RcList {
+        let nodes: Vec<Rc<RefCell<RcListNode>>> = iter
+            .into_iter()
+            .map(|val| Rc::new(RefCell::new(RcListNode::new(val))))
+            .collect();
+        if nodes.is_empty() {
+            return None;
+        }
+
+        // Link the nodes
+        for i in 0..nodes.len() - 1 {
+            nodes[i].borrow_mut().next = Some(nodes[i + 1].clone());
+        }
+
+        Some(nodes[0].clone())
+    }
+
+}
+
+#[cfg(test)]
+pub mod test_utils {
+    use super::*;
+
+    /// Create a cycle by connecting tail to the node at given position
+    /// This is a test utility for creating cyclic linked lists
+    pub fn create_cycle(head: &Rc<RefCell<RcListNode>>, pos: usize) {
+        let mut nodes = Vec::new();
+        let mut current = Some(head.clone());
+
+        // Collect all nodes
+        while let Some(node) = current {
+            let next = node.borrow().next.clone();
+            nodes.push(node);
+            current = next;
+        }
+
+        if pos < nodes.len() && !nodes.is_empty() {
+            // Connect last node to node at position
+            nodes[nodes.len() - 1].borrow_mut().next = Some(nodes[pos].clone());
         }
     }
 }
