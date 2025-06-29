@@ -35,7 +35,7 @@ pub fn has_cycle(head: RcList) -> bool {
 
 #[cfg(test)]
 mod test {
-    use crate::linked_list::list::{test_utils, RcListNode};
+    use crate::linked_list::list::{RcListNode, test_utils};
 
     use super::*;
 

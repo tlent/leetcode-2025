@@ -23,12 +23,12 @@ def reverse_list_recursive(head: List) -> List:
 
 
 def test_reverse_list() -> None:
-    result = reverse_list(ListNode.from_iterable(range(5)))
+    result = reverse_list(ListNode.from_values(range(5)))
     assert result is not None
-    assert list(result) == list(reversed(range(5)))
+    assert list(result.values()) == list(reversed(range(5)))
 
 
 def test_reverse_list_recursive() -> None:
-    result = reverse_list_recursive(ListNode.from_iterable(range(5)))
+    result = reverse_list_recursive(ListNode.from_values(range(5)))
     assert result is not None
-    assert list(result) == list(reversed(range(5)))
+    assert list(result.values()) == list(reversed(range(5)))

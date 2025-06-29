@@ -17,8 +17,8 @@ def merge(a: List, b: List) -> List:
 
 
 def test_merge() -> None:
-    a = ListNode.from_iterable([1, 2, 4])
-    b = ListNode.from_iterable([1, 3, 4])
+    a = ListNode.from_values([1, 2, 4])
+    b = ListNode.from_values([1, 3, 4])
     result = merge(a, b)
     assert result is not None
-    assert list(result) == [1, 1, 2, 3, 4, 4]
+    assert list(result.values()) == [1, 1, 2, 3, 4, 4]

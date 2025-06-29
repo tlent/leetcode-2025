@@ -8,7 +8,7 @@ class ListNode:
         self.next = next
 
     @classmethod
-    def from_iterable(cls, iterable: Iterable[int]) -> List:
+    def from_values(cls, iterable: Iterable[int]) -> List:
         head = None
         cursor = None
         for val in iterable:
@@ -20,11 +20,14 @@ class ListNode:
             cursor = node
         return head
 
-    def __iter__(self) -> Iterator[int]:
+    def nodes(self) -> Iterator[ListNode]:
         cursor: List = self
         while cursor:
-            yield cursor.val
+            yield cursor
             cursor = cursor.next
+
+    def values(self) -> Iterator[int]:
+        return map(lambda node: node.val, self.nodes())
 
 
 List = Optional[ListNode]

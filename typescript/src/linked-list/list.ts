@@ -9,7 +9,7 @@ export class ListNode {
     this.next = next;
   }
 
-  static from(iterable: Iterable<number>): List {
+  static from_values(iterable: Iterable<number>): List {
     let head: List = null;
     let cursor: List = null;
     for (const val of iterable) {
@@ -24,11 +24,17 @@ export class ListNode {
     return head;
   }
 
-  *[Symbol.iterator](): Generator<number> {
+  *nodes(): Generator<ListNode> {
     let cursor: List = this;
     while (cursor) {
-      yield cursor.val;
+      yield cursor;
       cursor = cursor.next;
+    }
+  }
+
+  *values(): Generator<number> {
+    for (const node of this.nodes()) {
+      yield node.val;
     }
   }
 }

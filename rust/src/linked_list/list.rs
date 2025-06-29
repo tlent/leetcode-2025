@@ -16,14 +16,6 @@ impl BoxListNode {
         BoxListNode { next: None, val }
     }
 
-    pub fn iter_nodes(&self) -> impl Iterator<Item = &Self> {
-        std::iter::successors(Some(self), |node| node.next.as_deref())
-    }
-
-    pub fn values(&self) -> impl Iterator<Item = i32> {
-        self.iter_nodes().map(|node| node.val)
-    }
-
     /// Create a linked list from an iterator
     pub fn from_values<T: IntoIterator<Item = i32>>(iter: T) -> BoxList {
         let mut head = BoxListNode::default();
@@ -33,6 +25,14 @@ impl BoxListNode {
             cursor = cursor.next.as_mut().unwrap();
         }
         head.next
+    }
+
+    pub fn nodes(&self) -> impl Iterator<Item = &Self> {
+        std::iter::successors(Some(self), |node| node.next.as_deref())
+    }
+
+    pub fn values(&self) -> impl Iterator<Item = i32> {
+        self.nodes().map(|node| node.val)
     }
 }
 
@@ -45,19 +45,6 @@ pub struct RcListNode {
 impl RcListNode {
     pub fn new(val: i32) -> Self {
         RcListNode { val, next: None }
-    }
-
-    pub fn iter_nodes(head: &Rc<RefCell<Self>>) -> impl Iterator<Item = Rc<RefCell<RcListNode>>> {
-        let mut current = Some(head.clone());
-        std::iter::from_fn(move || {
-            current.take().inspect(|node| {
-                current = node.borrow().next.clone();
-            })
-        })
-    }
-
-    pub fn values(head: &Rc<RefCell<Self>>) -> impl Iterator<Item = i32> {
-        Self::iter_nodes(head).map(|node| node.borrow().val)
     }
 
     /// Create a linked list from an iterator
@@ -78,6 +65,18 @@ impl RcListNode {
         Some(nodes[0].clone())
     }
 
+    pub fn nodes(head: &Rc<RefCell<Self>>) -> impl Iterator<Item = Rc<RefCell<RcListNode>>> {
+        let mut current = Some(head.clone());
+        std::iter::from_fn(move || {
+            current.take().inspect(|node| {
+                current = node.borrow().next.clone();
+            })
+        })
+    }
+
+    pub fn values(head: &Rc<RefCell<Self>>) -> impl Iterator<Item = i32> {
+        Self::nodes(head).map(|node| node.borrow().val)
+    }
 }
 
 #[cfg(test)]

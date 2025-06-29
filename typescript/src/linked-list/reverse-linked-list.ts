@@ -26,12 +26,14 @@ if (import.meta.vitest) {
   const { test, expect } = await import("vitest");
 
   test("reverseList", () => {
-    const list = ListNode.from([1, 2, 3, 4, 5]);
-    expect(Array.from(reverseList(list)!)).toEqual([5, 4, 3, 2, 1]);
+    const list = ListNode.from_values([1, 2, 3, 4, 5]);
+    const reversed = reverseList(list);
+    expect(Array.from(reversed!.values())).toEqual([5, 4, 3, 2, 1]);
   });
 
   test("reverseListRecursive", () => {
-    const list = ListNode.from([1, 2, 3, 4, 5]);
-    expect(Array.from(reverseListRecursive(list)!)).toEqual([5, 4, 3, 2, 1]);
+    const list = ListNode.from_values([1, 2, 3, 4, 5]);
+    const reversed = reverseListRecursive(list);
+    expect(Array.from(reversed!.values())).toEqual([5, 4, 3, 2, 1]);
   });
 }
