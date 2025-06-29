@@ -5,5 +5,3 @@ def max_profit(prices: list[int]) -> int:
         max_profit = max(max_profit, price - min_price)
         min_price = min(min_price, price)
     return max_profit
-
-

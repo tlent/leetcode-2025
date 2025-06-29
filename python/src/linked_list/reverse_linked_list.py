@@ -20,5 +20,3 @@ def reverse_list_recursive(head: List) -> List:
     head.next.next = head
     head.next = None
     return new_head
-
-

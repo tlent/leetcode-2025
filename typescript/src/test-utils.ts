@@ -20,7 +20,7 @@ export function createCycleList(values: number[], cyclePos: number): List {
   if (cyclePos < nodes.length) {
     nodes[nodes.length - 1]!.next = nodes[cyclePos]!;
   }
-  
+
   return list;
 }
 
@@ -34,12 +34,12 @@ export function listToArray(head: List, maxLength = 100): number[] {
   const result: number[] = [];
   let current = head;
   let count = 0;
-  
+
   while (current && count < maxLength) {
     result.push(current.val);
     current = current.next;
     count++;
   }
-  
+
   return result;
 }

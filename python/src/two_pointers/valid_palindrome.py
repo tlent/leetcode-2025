@@ -19,5 +19,3 @@ def is_palindrome_two_pointer(s: str) -> bool:
             end -= 1
 
     return True
-
-

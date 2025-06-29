@@ -9,5 +9,3 @@ def has_duplicate_early_return(numbers: list[int]) -> bool:
             return True
         seen.add(number)
     return False
-
-

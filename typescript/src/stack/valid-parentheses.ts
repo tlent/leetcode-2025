@@ -13,4 +13,3 @@ export function valid_parentheses(s: string): boolean {
   }
   return stack.length === 0;
 }
-

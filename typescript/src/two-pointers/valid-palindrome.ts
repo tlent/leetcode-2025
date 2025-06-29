@@ -26,4 +26,3 @@ function isAlphanumeric(character: string): boolean {
     ("0" <= character && character <= "9")
   );
 }
-

@@ -12,4 +12,3 @@ export function hasCycle(head: List): boolean {
   }
   return false;
 }
-

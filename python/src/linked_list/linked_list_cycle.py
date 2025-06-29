@@ -10,5 +10,3 @@ def has_cycle(head: List) -> bool:
         if slow == fast:
             return True
     return False
-
-

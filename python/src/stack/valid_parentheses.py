@@ -10,5 +10,3 @@ def valid_parentheses(s: str) -> bool:
         elif c != stack.pop():
             return False
     return len(stack) == 0
-
-

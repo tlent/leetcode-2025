@@ -21,4 +21,3 @@ export function reverseListRecursive(head: List): List {
   head.next = null;
   return newHead;
 }
-

@@ -16,4 +16,3 @@ export function merge(a: List, b: List): List {
   cursor.next = a ?? b;
   return head.next;
 }
-

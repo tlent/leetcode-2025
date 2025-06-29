@@ -6,5 +6,3 @@ def two_sum(numbers: list[int], target: int) -> list[int]:
             return [seen[complement], index]
         seen[number] = index
     raise ValueError("no solution found")
-
-

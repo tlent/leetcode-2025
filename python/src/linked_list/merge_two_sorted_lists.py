@@ -14,5 +14,3 @@ def merge(a: List, b: List) -> List:
         cursor = cursor.next
     cursor.next = a if a else b
     return head.next
-
-

@@ -10,4 +10,3 @@ export function hasDuplicateEarlyReturn(numbers: number[]): boolean {
   }
   return false;
 }
-

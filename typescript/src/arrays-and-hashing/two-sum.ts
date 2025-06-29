@@ -25,4 +25,3 @@ export function twoSumSort(numbers: number[], target: number): number[] {
   }
   throw new Error("no solution found");
 }
-
