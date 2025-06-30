@@ -6,14 +6,14 @@ pub type RcList = Option<Rc<RefCell<RcListNode>>>;
 
 #[derive(PartialEq, Eq, Clone, Debug, Default)]
 pub struct BoxListNode {
-    pub val: i32,
+    pub value: i32,
     pub next: BoxList,
 }
 
 impl BoxListNode {
     #[inline]
-    pub fn new(val: i32) -> Self {
-        BoxListNode { next: None, val }
+    pub fn new(value: i32) -> Self {
+        BoxListNode { next: None, value }
     }
 
     /// Create a linked list from an iterator
@@ -32,19 +32,19 @@ impl BoxListNode {
     }
 
     pub fn values(&self) -> impl Iterator<Item = i32> {
-        self.nodes().map(|node| node.val)
+        self.nodes().map(|node| node.value)
     }
 }
 
 #[derive(PartialEq, Eq, Clone, Debug, Default)]
 pub struct RcListNode {
-    pub val: i32,
+    pub value: i32,
     pub next: RcList,
 }
 
 impl RcListNode {
-    pub fn new(val: i32) -> Self {
-        RcListNode { val, next: None }
+    pub fn new(value: i32) -> Self {
+        RcListNode { value, next: None }
     }
 
     /// Create a linked list from an iterator
@@ -75,7 +75,7 @@ impl RcListNode {
     }
 
     pub fn values(head: &RcList) -> impl Iterator<Item = i32> {
-        Self::nodes(head).map(|node| node.borrow().val)
+        Self::nodes(head).map(|node| node.borrow().value)
     }
 }
 

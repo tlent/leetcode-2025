@@ -1,19 +1,19 @@
 export type List = ListNode | null;
 
 export class ListNode {
-  val: number;
+  value: number;
   next: List;
 
-  constructor(val = 0, next: List = null) {
-    this.val = val;
+  constructor(value = 0, next: List = null) {
+    this.value = value;
     this.next = next;
   }
 
   static from_values(values: Iterable<number>): List {
     let head: List = null;
     let cursor: List = null;
-    for (const value of values) {
-      const node = new ListNode(value);
+    for (const val of values) {
+      const node = new ListNode(val);
       if (!cursor) {
         head = node;
       } else {
@@ -34,7 +34,7 @@ export class ListNode {
 
   *values(): Generator<number> {
     for (const node of this.nodes()) {
-      yield node.val;
+      yield node.value;
     }
   }
 }
