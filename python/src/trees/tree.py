@@ -16,12 +16,14 @@ class TreeNode:
 
 
 class Tree:
-    def __init__(self, values: Iterable[int]):
-        nodes = [TreeNode(value) for value in values]
+    def __init__(self, values: Iterable[Optional[int]]):
+        nodes = [TreeNode(value) if value else None for value in values]
         if len(nodes) == 0:
             self.root = None
         else:
             for i, node in enumerate(nodes):
+                if not node:
+                    continue
                 left_index = 2 * i + 1
                 if left_index < len(nodes):
                     node.left = nodes[left_index]

@@ -23,26 +23,28 @@ pub struct Tree {
 }
 
 impl Tree {
-    pub fn new<V: IntoIterator<Item = i32>>(values: V) -> Self {
+    pub fn new<V: IntoIterator<Item = Option<i32>>>(values: V) -> Self {
         let mut nodes: Vec<_> = values
             .into_iter()
-            .map(|value| Rc::new(RefCell::new(TreeNode::new(value))))
+            .map(|value| value.map(|v| Rc::new(RefCell::new(TreeNode::new(v)))))
             .collect();
         if nodes.is_empty() {
             return Tree { root: None };
         }
         for (i, node) in nodes.iter().enumerate() {
-            let left_index = i * 2 + 1;
-            if left_index < nodes.len() {
-                node.borrow_mut().left = Some(nodes[left_index].clone());
-            }
-            let right_index = left_index + 1;
-            if right_index < nodes.len() {
-                node.borrow_mut().right = Some(nodes[right_index].clone());
+            if let Some(n) = node {
+                let left_index = i * 2 + 1;
+                if left_index < nodes.len() {
+                    n.borrow_mut().left = nodes[left_index].clone();
+                }
+                let right_index = left_index + 1;
+                if right_index < nodes.len() {
+                    n.borrow_mut().right = nodes[right_index].clone();
+                }
             }
         }
         Tree {
-            root: Some(nodes.remove(0)),
+            root: nodes.remove(0),
         }
     }
 

@@ -3,21 +3,21 @@ repos:
   - repo: local
     hooks:
       - id: rust-format
-        name: Rust Format
-        entry: bash -c 'cd rust && cargo fmt --check'
+        name: Cargo Format
+        entry: bash -c 'cd rust && cargo fmt'
         language: system
         files: ^rust/.*\.rs$
         pass_filenames: false
       
       - id: rust-lint
-        name: Rust Lint
+        name: Cargo Clippy Lint
         entry: bash -c 'cd rust && cargo clippy --all-targets --all-features -- -D warnings'
         language: system
         files: ^rust/.*\.rs$
         pass_filenames: false
       
       - id: rust-test
-        name: Rust Test
+        name: Cargo Test
         entry: bash -c 'cd rust && cargo test'
         language: system
         files: ^rust/.*\.rs$
@@ -41,7 +41,7 @@ repos:
         pass_filenames: false
         
       - id: typescript-test
-        name: TypeScript Test
+        name: Bun Test
         entry: bash -c 'cd typescript && bun test'
         language: system
         files: ^typescript/.*\.ts$
@@ -65,14 +65,14 @@ repos:
         pass_filenames: false
         
       - id: mypy
-        name: MyPy
+        name: MyPy Check
         entry: bash -c 'cd python && uv run mypy src/'
         language: system
         files: ^python/.*\.py$
         pass_filenames: false
         
       - id: python-test
-        name: Python Test
+        name: PyTest
         entry: bash -c 'cd python && uv run pytest'
         language: system
         files: ^python/.*\.py$

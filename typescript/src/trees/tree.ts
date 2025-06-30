@@ -17,19 +17,24 @@ export class TreeNode {
 export class Tree {
   public root: TreeNode | null;
 
-  constructor(values: Iterable<number>) {
-    const nodes = Array.from(values).map((value) => new TreeNode(value));
+  constructor(values: Iterable<number | null>) {
+    const nodes = Array.from(values).map((value) =>
+      value === null ? null : new TreeNode(value)
+    );
     if (nodes.length === 0) {
       this.root = null;
     } else {
       for (const [i, node] of nodes.entries()) {
+        if (!node) {
+          continue;
+        }
         const left_index = i * 2 + 1;
         if (left_index < nodes.length) {
-          node.left = nodes[left_index]!;
+          node.left = nodes[left_index] ?? null;
         }
         const right_index = left_index + 1;
         if (right_index < nodes.length) {
-          node.right = nodes[right_index]!;
+          node.right = nodes[right_index] ?? null;
         }
       }
       this.root = nodes[0]!;

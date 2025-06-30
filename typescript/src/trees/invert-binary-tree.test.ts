@@ -17,7 +17,7 @@ test('invertTree example two', () => {
 test('invertTree example three', () => {
   const tree = new Tree([]);
   tree.root = invertTree(tree.root);
-  expect(tree.toArray()).toBeNull();
+  expect(tree.root).toBeNull();
 });
 
 test('invertTreeRecursive example one', () => {

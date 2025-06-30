@@ -29,7 +29,7 @@ bunx biome check --write .      # Format and lint
 bunx tsc --noEmit              # Type check
 bun test                       # Run tests
 
-bunx biome check --write . && bunx tsc --noEmit && bun test
+bunx biome check --write && bunx tsc --noEmit && bun test
 ```
 
 ### Rust
