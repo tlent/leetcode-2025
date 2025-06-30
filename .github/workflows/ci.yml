@@ -41,12 +41,21 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-bun-
 
-    # Setup Python with caching
+    # Setup Python UV
     - uses: astral-sh/setup-uv@v4
       with:
         version: "latest"
-        enable-cache: true
-        cache-dependency-glob: "python/uv.lock"
+
+    # Manual UV cache (more reliable than built-in)
+    - name: Cache UV dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.cache/uv
+          python/.venv
+        key: ${{ runner.os }}-uv-${{ hashFiles('python/uv.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-uv-
 
     # Install dependencies for all languages
     - name: Install Rust dependencies
