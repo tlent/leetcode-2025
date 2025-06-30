@@ -7,15 +7,9 @@ Focus on optimal algorithms and idiomatic clean code patterns.
 
 ## Development Commands
 
-### Optimized Workflow
+### Individual Language Workflows
 
-```bash
-# Run all languages in parallel (FASTEST - recommended)
-python parallel_workflow.py
-
-# Run individual workflows
-python benchmark_tools.py    # Benchmark and compare all tools
-```
+Use the commands below for each language:
 
 ### Rust (Optimized)
 
@@ -111,14 +105,9 @@ Each language follows its idiomatic testing patterns:
 
 ## Quality Checks
 
-### Optimized Quality Checks
+### Quality Checks
 
-```bash
-# All languages in parallel (FASTEST)
-python parallel_workflow.py
-
-# Individual language checks (optimized)
-```
+Run quality checks for each language individually:
 
 ### Rust Quality Checks (Optimized)
 
