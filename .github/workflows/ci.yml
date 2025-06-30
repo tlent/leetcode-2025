@@ -70,10 +70,12 @@ jobs:
       working-directory: ./python
       run: uv sync --dev
 
-    # Cache pre-commit environments
+    # Cache pre-commit environments and pip dependencies
     - uses: actions/cache@v4
       with:
-        path: ~/.cache/pre-commit
+        path: |
+          ~/.cache/pre-commit
+          ~/.cache/pip
         key: pre-commit-${{ runner.os }}-${{ hashFiles('.pre-commit-config.yaml') }}
 
     # Run pre-commit hooks (includes all quality checks and tests)
