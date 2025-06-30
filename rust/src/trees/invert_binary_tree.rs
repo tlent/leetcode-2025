@@ -43,43 +43,43 @@ mod tests {
 
     #[test]
     fn test_invert_binary_tree_example_one() {
-        let mut tree = Tree::new(&[4, 2, 7, 1, 3, 6, 9]);
-        *tree.root_mut() = invert_binary_tree(tree.root());
+        let mut tree = Tree::new([4, 2, 7, 1, 3, 6, 9]);
+        tree.root = invert_binary_tree(tree.root);
         assert_eq!(tree.to_vec(), [4, 7, 2, 9, 6, 3, 1]);
     }
 
     #[test]
     fn test_invert_binary_tree_example_two() {
-        let mut tree = Tree::new(&[2, 1, 3]);
-        *tree.root_mut() = invert_binary_tree(tree.root());
+        let mut tree = Tree::new([2, 1, 3]);
+        tree.root = invert_binary_tree(tree.root);
         assert_eq!(tree.to_vec(), [2, 3, 1]);
     }
 
     #[test]
     fn test_invert_binary_tree_example_three() {
-        let mut tree = Tree::new(&[]);
-        *tree.root_mut() = invert_binary_tree(tree.root());
+        let mut tree = Tree::new([]);
+        tree.root = invert_binary_tree(tree.root);
         assert_eq!(tree.to_vec(), []);
     }
 
     #[test]
     fn test_invert_binary_tree_recursive_example_one() {
-        let mut tree = Tree::new(&[4, 2, 7, 1, 3, 6, 9]);
-        *tree.root_mut() = invert_binary_tree_recursive(tree.root());
+        let mut tree = Tree::new([4, 2, 7, 1, 3, 6, 9]);
+        tree.root = invert_binary_tree_recursive(tree.root);
         assert_eq!(tree.to_vec(), [4, 7, 2, 9, 6, 3, 1]);
     }
 
     #[test]
     fn test_invert_binary_tree_recursive_example_two() {
-        let mut tree = Tree::new(&[2, 1, 3]);
-        *tree.root_mut() = invert_binary_tree_recursive(tree.root());
+        let mut tree = Tree::new([2, 1, 3]);
+        tree.root = invert_binary_tree_recursive(tree.root);
         assert_eq!(tree.to_vec(), [2, 3, 1]);
     }
 
     #[test]
     fn test_invert_binary_tree_recursive_example_three() {
-        let mut tree = Tree::new(&[]);
-        *tree.root_mut() = invert_binary_tree_recursive(tree.root());
+        let mut tree = Tree::new([]);
+        tree.root = invert_binary_tree_recursive(tree.root);
         assert_eq!(tree.to_vec(), []);
     }
 }

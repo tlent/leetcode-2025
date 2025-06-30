@@ -11,7 +11,7 @@ export class ListNode {
 export class List {
   public head: ListNode | null;
 
-  constructor(values: number[]) {
+  constructor(values: Iterable<number>) {
     let head: ListNode | null = null;
     let cursor: ListNode | null = null;
     for (const val of values) {

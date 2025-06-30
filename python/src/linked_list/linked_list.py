@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Iterator, Optional
+from typing import Iterator, Optional, Iterable
 
 
 class ListNode:
@@ -9,7 +9,7 @@ class ListNode:
 
 
 class List:
-    def __init__(self, values: list[int]):
+    def __init__(self, values: Iterable[int]):
         head = None
         cursor = None
         for value in values:

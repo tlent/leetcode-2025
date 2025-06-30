@@ -18,16 +18,18 @@ impl TreeNode {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Default)]
-pub struct Tree(Option<Rc<RefCell<TreeNode>>>);
+pub struct Tree {
+    pub root: Option<Rc<RefCell<TreeNode>>>,
+}
 
 impl Tree {
-    pub fn new(values: &[i32]) -> Self {
+    pub fn new<V: IntoIterator<Item = i32>>(values: V) -> Self {
         let mut nodes: Vec<_> = values
-            .iter()
-            .map(|&value| Rc::new(RefCell::new(TreeNode::new(value))))
+            .into_iter()
+            .map(|value| Rc::new(RefCell::new(TreeNode::new(value))))
             .collect();
         if nodes.is_empty() {
-            return Tree(None);
+            return Tree { root: None };
         }
         for (i, node) in nodes.iter().enumerate() {
             let left_index = i * 2 + 1;
@@ -39,12 +41,14 @@ impl Tree {
                 node.borrow_mut().right = Some(nodes[right_index].clone());
             }
         }
-        Tree(Some(nodes.remove(0)))
+        Tree {
+            root: Some(nodes.remove(0)),
+        }
     }
 
     pub fn nodes(&self) -> impl Iterator<Item = Rc<RefCell<TreeNode>>> {
         let mut queue = VecDeque::new();
-        if let Some(root_node) = &self.0 {
+        if let Some(root_node) = &self.root {
             queue.push_back(root_node.clone());
         }
         std::iter::from_fn(move || match queue.pop_front() {
@@ -67,13 +71,5 @@ impl Tree {
 
     pub fn to_vec(&self) -> Vec<i32> {
         self.values().collect()
-    }
-
-    pub fn root(&self) -> Option<Rc<RefCell<TreeNode>>> {
-        self.0.clone()
-    }
-
-    pub fn root_mut(&mut self) -> &mut Option<Rc<RefCell<TreeNode>>> {
-        &mut self.0
     }
 }

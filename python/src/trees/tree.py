@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Iterator, Optional
+from typing import Iterator, Optional, Iterable
 from collections import deque
 
 
@@ -16,7 +16,7 @@ class TreeNode:
 
 
 class Tree:
-    def __init__(self, values: list[int]):
+    def __init__(self, values: Iterable[int]):
         nodes = [TreeNode(value) for value in values]
         if len(nodes) == 0:
             self.root = None

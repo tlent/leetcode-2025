@@ -17,8 +17,8 @@ export class TreeNode {
 export class Tree {
   public root: TreeNode | null;
 
-  constructor(values: number[]) {
-    const nodes = values.map((value) => new TreeNode(value));
+  constructor(values: Iterable<number>) {
+    const nodes = Array.from(values).map((value) => new TreeNode(value));
     if (nodes.length === 0) {
       this.root = null;
     } else {
