@@ -9,11 +9,11 @@ export class ListNode {
     this.next = next;
   }
 
-  static from_values(iterable: Iterable<number>): List {
+  static from_values(values: Iterable<number>): List {
     let head: List = null;
     let cursor: List = null;
-    for (const val of iterable) {
-      const node = new ListNode(val);
+    for (const value of values) {
+      const node = new ListNode(value);
       if (!cursor) {
         head = node;
       } else {

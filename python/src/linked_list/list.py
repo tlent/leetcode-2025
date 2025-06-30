@@ -3,16 +3,16 @@ from typing import Iterable, Iterator, Optional
 
 
 class ListNode:
-    def __init__(self, val: int = 0, next: List = None):
-        self.val = val
+    def __init__(self, value: int = 0, next: List = None):
+        self.value = value
         self.next = next
 
     @classmethod
-    def from_values(cls, iterable: Iterable[int]) -> List:
+    def from_values(cls, values: Iterable[int]) -> List:
         head = None
         cursor = None
-        for val in iterable:
-            node = cls(val)
+        for value in values:
+            node = cls(value)
             if cursor is None:
                 head = node
             else:
@@ -27,7 +27,7 @@ class ListNode:
             cursor = cursor.next
 
     def values(self) -> Iterator[int]:
-        return map(lambda node: node.val, self.nodes())
+        return map(lambda node: node.value, self.nodes())
 
 
 List = Optional[ListNode]

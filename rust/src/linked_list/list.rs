@@ -17,11 +17,11 @@ impl BoxListNode {
     }
 
     /// Create a linked list from an iterator
-    pub fn from_values<T: IntoIterator<Item = i32>>(iter: T) -> BoxList {
+    pub fn from_values<T: IntoIterator<Item = i32>>(values: T) -> BoxList {
         let mut head = BoxListNode::default();
         let mut cursor = &mut head;
-        for val in iter {
-            cursor.next = Some(Box::new(BoxListNode::new(val)));
+        for value in values {
+            cursor.next = Some(Box::new(BoxListNode::new(value)));
             cursor = cursor.next.as_mut().unwrap();
         }
         head.next
@@ -65,8 +65,8 @@ impl RcListNode {
         Some(nodes[0].clone())
     }
 
-    pub fn nodes(head: &Rc<RefCell<Self>>) -> impl Iterator<Item = Rc<RefCell<RcListNode>>> {
-        let mut current = Some(head.clone());
+    pub fn nodes(head: &RcList) -> impl Iterator<Item = Rc<RefCell<RcListNode>>> {
+        let mut current = head.as_ref().map(Rc::clone);
         std::iter::from_fn(move || {
             current.take().inspect(|node| {
                 current = node.borrow().next.clone();
@@ -74,7 +74,7 @@ impl RcListNode {
         })
     }
 
-    pub fn values(head: &Rc<RefCell<Self>>) -> impl Iterator<Item = i32> {
+    pub fn values(head: &RcList) -> impl Iterator<Item = i32> {
         Self::nodes(head).map(|node| node.borrow().val)
     }
 }
@@ -132,7 +132,7 @@ mod tests {
     fn test_rc_list_from_values() {
         let list = RcListNode::from_values([1, 2, 3]);
         assert!(list.is_some());
-        let values: Vec<i32> = RcListNode::values(&list.unwrap()).collect();
+        let values: Vec<i32> = RcListNode::values(&list).collect();
         assert_eq!(values, vec![1, 2, 3]);
     }
 
@@ -144,7 +144,7 @@ mod tests {
 
     #[test]
     fn test_rc_list_nodes_iterator() {
-        let list = RcListNode::from_values([1, 2, 3]).unwrap();
+        let list = RcListNode::from_values([1, 2, 3]);
         let node_count = RcListNode::nodes(&list).count();
         assert_eq!(node_count, 3);
     }

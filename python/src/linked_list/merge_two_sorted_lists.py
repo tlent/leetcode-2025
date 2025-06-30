@@ -5,7 +5,7 @@ def merge(a: List, b: List) -> List:
     head = ListNode()
     cursor = head
     while a and b:
-        if a.val <= b.val:
+        if a.value <= b.value:
             cursor.next = a
             a = a.next
         else:
