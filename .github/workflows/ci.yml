@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+    - uses: actions/checkout@v4
+
+    # Setup Rust with caching
+    - uses: dtolnay/rust-toolchain@stable
+      with:
+        components: rustfmt, clippy
+
+    - uses: Swatinem/rust-cache@v2
+      with:
+        workspaces: rust
+
+    # Setup Bun with caching
+    - uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: latest
+
+    - name: Cache bun dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.bun/install/cache
+          typescript/node_modules
+        key: ${{ runner.os }}-bun-${{ hashFiles('typescript/bun.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-bun-
+
+    # Setup Python with caching
+    - uses: astral-sh/setup-uv@v4
+      with:
+        version: "latest"
+        enable-cache: true
+        cache-dependency-glob: "python/uv.lock"
+
+    # Install dependencies for all languages
+    - name: Install Rust dependencies
+      working-directory: ./rust
+      run: cargo fetch
+
+    - name: Install TypeScript dependencies
+      working-directory: ./typescript
+      run: bun install
+
+    - name: Install Python dependencies
+      working-directory: ./python
+      run: uv sync --dev
+
+    # Cache pre-commit environments
+    - uses: actions/cache@v4
+      with:
+        path: ~/.cache/pre-commit
+        key: pre-commit-${{ runner.os }}-${{ hashFiles('.pre-commit-config.yaml') }}
+
+    # Run pre-commit hooks (includes all quality checks and tests)
+    - uses: pre-commit/action@v3.0.1
+      with:
+        extra_args: --all-files
