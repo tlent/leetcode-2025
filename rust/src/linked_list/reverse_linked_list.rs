@@ -50,14 +50,14 @@ mod tests {
     #[test]
     fn test_reverse_list() {
         let mut list = List::new(&[1, 2, 3, 4, 5]);
-        list.0 = reverse_list(list.0);
+        *list.head_mut() = reverse_list(list.head());
         assert_eq!(list.to_vec(), [5, 4, 3, 2, 1]);
     }
 
     #[test]
     fn test_reverse_list_recursive() {
         let mut list = List::new(&[1, 2, 3, 4, 5]);
-        list.0 = reverse_list(list.0);
+        *list.head_mut() = reverse_list(list.head());
         assert_eq!(list.to_vec(), [5, 4, 3, 2, 1]);
     }
 }

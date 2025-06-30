@@ -18,7 +18,7 @@ impl TreeNode {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Default)]
-pub struct Tree(pub Option<Rc<RefCell<TreeNode>>>);
+pub struct Tree(Option<Rc<RefCell<TreeNode>>>);
 
 impl Tree {
     pub fn new(values: &[i32]) -> Self {
@@ -67,5 +67,13 @@ impl Tree {
 
     pub fn to_vec(&self) -> Vec<i32> {
         self.values().collect()
+    }
+
+    pub fn root(&self) -> Option<Rc<RefCell<TreeNode>>> {
+        self.0.clone()
+    }
+
+    pub fn root_mut(&mut self) -> &mut Option<Rc<RefCell<TreeNode>>> {
+        &mut self.0
     }
 }

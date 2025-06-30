@@ -15,7 +15,7 @@ impl ListNode {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Default)]
-pub struct List(pub Option<Box<ListNode>>);
+pub struct List(Option<Box<ListNode>>);
 
 impl List {
     pub fn new(values: &[i32]) -> Self {
@@ -44,6 +44,14 @@ impl List {
     pub fn to_vec(&self) -> Vec<i32> {
         self.values().collect()
     }
+
+    pub fn head(&self) -> Option<Box<ListNode>> {
+        self.0.clone()
+    }
+
+    pub fn head_mut(&mut self) -> &mut Option<Box<ListNode>> {
+        &mut self.0
+    }
 }
 
 #[derive(PartialEq, Eq, Clone, Debug, Default)]
@@ -58,7 +66,7 @@ impl SharedListNode {
     }
 }
 #[derive(Debug, Clone, PartialEq, Eq, Default)]
-pub struct SharedList(pub Option<Rc<RefCell<SharedListNode>>>);
+pub struct SharedList(Option<Rc<RefCell<SharedListNode>>>);
 
 impl SharedList {
     pub fn new(values: &[i32]) -> Self {
@@ -93,6 +101,14 @@ impl SharedList {
 
     pub fn to_vec(&self) -> Vec<i32> {
         self.values().collect()
+    }
+
+    pub fn head(&self) -> Option<Rc<RefCell<SharedListNode>>> {
+        self.0.clone()
+    }
+
+    pub fn head_mut(&mut self) -> &mut Option<Rc<RefCell<SharedListNode>>> {
+        &mut self.0
     }
 }
 

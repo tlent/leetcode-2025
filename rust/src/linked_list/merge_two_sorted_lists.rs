@@ -30,7 +30,7 @@ mod tests {
     fn test_merge() {
         let mut a = List::new(&[1, 2, 4]);
         let b = List::new(&[1, 3, 4]);
-        a.0 = merge(a.0, b.0);
+        *a.head_mut() = merge(a.head(), b.head());
         assert_eq!(a.to_vec(), vec![1, 1, 2, 3, 4, 4]);
     }
 }
