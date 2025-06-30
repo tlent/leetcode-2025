@@ -39,6 +39,10 @@ jobs:
       working-directory: ./rust
       run: cargo clippy -- -D warnings
 
+    - name: Type check
+      working-directory: ./rust
+      run: cargo check
+
     - name: Test
       working-directory: ./rust
       run: cargo test --verbose

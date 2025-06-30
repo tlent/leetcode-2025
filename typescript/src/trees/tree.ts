@@ -6,7 +6,7 @@ export class TreeNode {
   constructor(
     value = 0,
     left: TreeNode | null = null,
-    right: TreeNode | null = null,
+    right: TreeNode | null = null
   ) {
     this.value = value;
     this.left = left;

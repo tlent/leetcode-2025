@@ -6,7 +6,7 @@ export function twoSum(numbers: number[], target: number): number[] {
     if (complementIndex !== undefined) return [complementIndex, index];
     seen.set(number, index);
   }
-  throw new Error("no solution found");
+  throw new Error('no solution found');
 }
 
 export function twoSumSort(numbers: number[], target: number): number[] {
@@ -23,5 +23,5 @@ export function twoSumSort(numbers: number[], target: number): number[] {
     else if (sum < target) start += 1;
     else end -= 1;
   }
-  throw new Error("no solution found");
+  throw new Error('no solution found');
 }

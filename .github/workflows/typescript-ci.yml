@@ -41,13 +41,9 @@ jobs:
       working-directory: ./typescript
       run: bun install
 
-    - name: Format check
+    - name: Format and lint check
       working-directory: ./typescript
-      run: bunx prettier --check .
-
-    - name: Lint
-      working-directory: ./typescript
-      run: bunx eslint
+      run: bunx biome check .
 
     - name: Type check
       working-directory: ./typescript
@@ -55,4 +51,4 @@ jobs:
 
     - name: Test
       working-directory: ./typescript
-      run: bunx vitest run --reporter=verbose
+      run: bun test

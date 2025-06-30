@@ -1,4 +1,4 @@
-import { ListNode } from "./linked-list";
+import type { ListNode } from './linked-list';
 
 export function hasCycle(head: ListNode | null): boolean {
   let slow = head;

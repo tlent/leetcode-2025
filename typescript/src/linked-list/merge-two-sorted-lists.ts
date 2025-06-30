@@ -1,4 +1,4 @@
-import { ListNode } from "./linked-list";
+import { ListNode } from './linked-list';
 
 export function merge(a: ListNode | null, b: ListNode | null): ListNode | null {
   const head = new ListNode();

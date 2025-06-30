@@ -1,0 +1,84 @@
+repos:
+  # Rust
+  - repo: local
+    hooks:
+      - id: rust-format
+        name: Rust Format
+        entry: bash -c 'cd rust && cargo fmt --check'
+        language: system
+        files: ^rust/.*\.rs$
+        pass_filenames: false
+      
+      - id: rust-lint
+        name: Rust Lint
+        entry: bash -c 'cd rust && cargo clippy --all-targets --all-features -- -D warnings'
+        language: system
+        files: ^rust/.*\.rs$
+        pass_filenames: false
+      
+      - id: rust-test
+        name: Rust Test
+        entry: bash -c 'cd rust && cargo test'
+        language: system
+        files: ^rust/.*\.rs$
+        pass_filenames: false
+
+  # TypeScript
+  - repo: local
+    hooks:
+      - id: biome-check
+        name: Biome Check
+        entry: bash -c 'cd typescript && bunx biome check --write .'
+        language: system
+        files: ^typescript/.*\.(ts|js|json)$
+        pass_filenames: false
+        
+      - id: typescript-check
+        name: TypeScript Check
+        entry: bash -c 'cd typescript && bunx tsc --noEmit'
+        language: system
+        files: ^typescript/.*\.ts$
+        pass_filenames: false
+        
+      - id: typescript-test
+        name: TypeScript Test
+        entry: bash -c 'cd typescript && bun test'
+        language: system
+        files: ^typescript/.*\.ts$
+        pass_filenames: false
+
+  # Python
+  - repo: local
+    hooks:
+      - id: ruff-format
+        name: Ruff Format
+        entry: bash -c 'cd python && uv run ruff format src/'
+        language: system
+        files: ^python/.*\.py$
+        pass_filenames: false
+        
+      - id: ruff-lint
+        name: Ruff Lint
+        entry: bash -c 'cd python && uv run ruff check --fix src/'
+        language: system
+        files: ^python/.*\.py$
+        pass_filenames: false
+        
+      - id: mypy
+        name: MyPy
+        entry: bash -c 'cd python && uv run mypy src/'
+        language: system
+        files: ^python/.*\.py$
+        pass_filenames: false
+        
+      - id: python-test
+        name: Python Test
+        entry: bash -c 'cd python && uv run pytest'
+        language: system
+        files: ^python/.*\.py$
+        pass_filenames: false
+
+# Global settings
+default_stages: [pre-commit]
+fail_fast: false
+minimum_pre_commit_version: '3.0.0'

@@ -3,18 +3,20 @@
 LeetCode solutions implemented in Rust, TypeScript, and Python with optimal
 algorithms and idiomatic clean code patterns.
 
-## Development Commands
+## Usage
 
-### Rust
+### Python
 
 ```bash
-cd rust
+cd python
 
-# Development workflow
-cargo fmt     # Format code
-cargo clippy  # Lint code
-cargo check   # Type check
-cargo test    # Run tests
+uv sync --dev                    # Install dependencies
+uv run ruff format              # Format code
+uv run ruff check               # Lint code
+uv run mypy src/                # Type check
+uv run pytest                  # Run tests
+
+uv run ruff format && uv run ruff check && uv run mypy src/ && uv run pytest
 ```
 
 ### TypeScript
@@ -22,33 +24,43 @@ cargo test    # Run tests
 ```bash
 cd typescript
 
-# Development workflow
-bun install         # Install dependencies
-bunx prettier -w .  # Format code
-bunx eslint         # Lint code
-bunx tsc --noEmit   # Type check
-bunx vitest run     # Run tests
+bun install                     # Install dependencies
+bunx biome check --write .      # Format and lint
+bunx tsc --noEmit              # Type check
+bun test                       # Run tests
+
+bunx biome check --write . && bunx tsc --noEmit && bun test
 ```
+
+### Rust
+
+```bash
+cd rust
+
+cargo fmt                      # Format code
+cargo clippy                   # Lint code
+cargo check                    # Type check
+cargo test                     # Run tests
+
+cargo fmt && cargo clippy && cargo check && cargo test
+```
+
+## Testing Approach
+
+### TypeScript
+
+- **Separate test files**: `.test.ts` files alongside implementations
+- **Test framework**: Bun test
 
 ### Python
 
-```bash
-cd python
+- **Separate test files**: `test_*.py` files alongside implementations
+- **pytest framework**: Standard Python testing with automatic discovery
 
-# Development workflow
-uv sync --dev       # Install dependencies
-uv run ruff format  # Format code
-uv run ruff check   # Lint code
-uv run mypy src/    # Type check
-uv run pytest       # Run tests
-```
+### Rust
 
-## Testing
+- **Inline test modules**: `#[cfg(test)] mod tests` in each source file
 
-Each language follows its idiomatic testing patterns:
+### Coverage
 
-- **Rust**: Inline `#[cfg(test)]` modules in source files (idiomatic Rust approach)
-- **TypeScript**: Separate `.test.ts` files alongside implementations
-- **Python**: Separate `test_*.py` files alongside implementations
-
-This approach provides clean separation between implementation and tests while maintaining discoverability and organization.
+- **LeetCode examples**: All test cases use actual LeetCode problem examples
