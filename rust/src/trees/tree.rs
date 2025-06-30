@@ -19,7 +19,7 @@ impl TreeNode {
         }
     }
 
-    pub fn from_level_order<T: IntoIterator<Item = i32>>(values: T) -> Tree {
+    pub fn from_array<T: IntoIterator<Item = i32>>(values: T) -> Tree {
         let mut nodes: Vec<_> = values
             .into_iter()
             .map(|value| Rc::new(RefCell::new(TreeNode::new(value))))
@@ -40,6 +40,10 @@ impl TreeNode {
         Some(nodes.remove(0))
     }
 
+    pub fn values(root: &Tree) -> impl Iterator<Item = i32> {
+        Self::nodes(root).map(|node| node.borrow().value)
+    }
+
     pub fn nodes(root: &Tree) -> impl Iterator<Item = Rc<RefCell<TreeNode>>> {
         let mut queue = VecDeque::new();
         if let Some(root_node) = root {
@@ -57,17 +61,5 @@ impl TreeNode {
                 Some(node)
             }
         })
-    }
-
-    pub fn values(root: &Tree) -> impl Iterator<Item = i32> {
-        Self::nodes(root).map(|node| node.borrow().value)
-    }
-
-    pub fn level_order_values(root: &Tree) -> impl Iterator<Item = i32> {
-        Self::values(root)
-    }
-
-    pub fn level_order_nodes(root: &Tree) -> impl Iterator<Item = Rc<RefCell<TreeNode>>> {
-        Self::nodes(root)
     }
 }

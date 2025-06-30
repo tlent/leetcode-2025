@@ -15,7 +15,7 @@ class TreeNode:
         self.right = right
 
     @classmethod
-    def from_level_order(cls, values: Iterable[int]) -> Tree:
+    def from_array(cls, values: Iterable[int]) -> Tree:
         nodes = [cls(value) for value in values]
         if len(nodes) == 0:
             return None
@@ -41,12 +41,6 @@ class TreeNode:
 
     def values(self) -> Iterator[int]:
         return map(lambda node: node.value, self.nodes())
-
-    def level_order_values(self) -> Iterator[int]:
-        return self.values()
-
-    def level_order_nodes(self) -> Iterator[TreeNode]:
-        return self.nodes()
 
 
 Tree = Optional[TreeNode]

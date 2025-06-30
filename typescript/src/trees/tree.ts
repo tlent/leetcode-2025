@@ -11,7 +11,7 @@ export class TreeNode {
     this.right = right;
   }
 
-  static from_level_order(values: Iterable<number>): Tree {
+  static from_array(values: Iterable<number>): Tree {
     const nodes = Array.from(values).map((value) => new TreeNode(value));
     if (nodes.length === 0) {
       return null;
@@ -47,13 +47,5 @@ export class TreeNode {
     for (const node of this.nodes()) {
       yield node.value;
     }
-  }
-
-  *level_order_values(): Generator<number> {
-    yield* this.values();
-  }
-
-  *level_order_nodes(): Generator<TreeNode> {
-    yield* this.nodes();
   }
 }
