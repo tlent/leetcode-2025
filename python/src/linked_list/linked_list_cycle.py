@@ -1,7 +1,8 @@
-from list import List
+from typing import Optional
+from linked_list import ListNode
 
 
-def has_cycle(head: List) -> bool:
+def has_cycle(head: Optional[ListNode]) -> bool:
     slow = head
     fast = head
     while slow and fast and fast.next:

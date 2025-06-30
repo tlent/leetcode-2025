@@ -1,6 +1,6 @@
-use crate::linked_list::list::BoxList;
+use crate::linked_list::list::ListNode;
 
-pub fn reverse_list(head: BoxList) -> BoxList {
+pub fn reverse_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
     let mut prev = None;
     let mut cursor = head;
 
@@ -18,7 +18,7 @@ pub fn reverse_list(head: BoxList) -> BoxList {
 // Unlike Python/TypeScript which can directly access head.next.next after recursion,
 // Rust requires finding the tail of the reversed portion to attach the current node.
 // This results in O(n) tail traversal for each of O(n) recursive calls.
-pub fn reverse_list_recursive(head: BoxList) -> BoxList {
+pub fn reverse_list_recursive(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
     match head {
         None => None,
         Some(mut node) => match node.next.take() {
@@ -43,21 +43,21 @@ pub fn reverse_list_recursive(head: BoxList) -> BoxList {
 
 #[cfg(test)]
 mod tests {
-    use crate::linked_list::list::BoxListNode;
+    use crate::linked_list::list::List;
 
     use super::*;
 
     #[test]
     fn test_reverse_list() {
-        let list = BoxListNode::from_values(1..=5);
-        let expected = BoxListNode::from_values((1..=5).rev());
-        assert_eq!(reverse_list(list), expected);
+        let mut list = List::new(&[1, 2, 3, 4, 5]);
+        list.0 = reverse_list(list.0);
+        assert_eq!(list.to_vec(), [5, 4, 3, 2, 1]);
     }
 
     #[test]
     fn test_reverse_list_recursive() {
-        let list = BoxListNode::from_values(1..=5);
-        let expected = BoxListNode::from_values((1..=5).rev());
-        assert_eq!(reverse_list_recursive(list), expected);
+        let mut list = List::new(&[1, 2, 3, 4, 5]);
+        list.0 = reverse_list(list.0);
+        assert_eq!(list.to_vec(), [5, 4, 3, 2, 1]);
     }
 }

@@ -1,6 +1,6 @@
-import { Tree } from "./tree";
+import { TreeNode } from "./tree";
 
-export function invertTree(root: Tree): Tree {
+export function invertTree(root: TreeNode | null): TreeNode | null {
   if (!root) {
     return null;
   }
@@ -18,7 +18,7 @@ export function invertTree(root: Tree): Tree {
   return root;
 }
 
-export function invertTreeRecursive(root: Tree): Tree {
+export function invertTreeRecursive(root: TreeNode | null): TreeNode | null {
   if (!root) {
     return null;
   }

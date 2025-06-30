@@ -1,7 +1,8 @@
-from tree import Tree
+from typing import Optional
+from tree import TreeNode
 
 
-def invert_tree(root: Tree) -> Tree:
+def invert_tree(root: Optional[TreeNode]) -> Optional[TreeNode]:
     if not root:
         return None
     stack = [root]
@@ -15,7 +16,7 @@ def invert_tree(root: Tree) -> Tree:
     return root
 
 
-def invert_tree_recursive(root: Tree) -> Tree:
+def invert_tree_recursive(root: Optional[TreeNode]) -> Optional[TreeNode]:
     if not root:
         return None
     root.left, root.right = (

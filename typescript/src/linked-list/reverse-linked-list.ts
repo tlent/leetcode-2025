@@ -1,6 +1,6 @@
-import { List } from "./list";
+import { ListNode } from "./linked-list";
 
-export function reverseList(head: List): List {
+export function reverseList(head: ListNode | null): ListNode | null {
   let prev = null;
   let cursor = head;
   while (cursor) {
@@ -12,7 +12,7 @@ export function reverseList(head: List): List {
   return prev;
 }
 
-export function reverseListRecursive(head: List): List {
+export function reverseListRecursive(head: ListNode | null): ListNode | null {
   if (!head?.next) {
     return head;
   }

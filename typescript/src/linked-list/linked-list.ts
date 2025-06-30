@@ -1,17 +1,19 @@
-export type List = ListNode | null;
-
 export class ListNode {
   value: number;
-  next: List;
+  next: ListNode | null;
 
-  constructor(value = 0, next: List = null) {
+  constructor(value = 0, next: ListNode | null = null) {
     this.value = value;
     this.next = next;
   }
+}
 
-  static from_values(values: Iterable<number>): List {
-    let head: List = null;
-    let cursor: List = null;
+export class List {
+  public head: ListNode | null;
+
+  constructor(values: number[]) {
+    let head: ListNode | null = null;
+    let cursor: ListNode | null = null;
     for (const val of values) {
       const node = new ListNode(val);
       if (!cursor) {
@@ -21,11 +23,11 @@ export class ListNode {
       }
       cursor = node;
     }
-    return head;
+    this.head = head;
   }
 
   *nodes(): Generator<ListNode> {
-    let cursor: List = this;
+    let cursor = this.head;
     while (cursor) {
       yield cursor;
       cursor = cursor.next;
@@ -36,5 +38,9 @@ export class ListNode {
     for (const node of this.nodes()) {
       yield node.value;
     }
+  }
+
+  toArray(): number[] {
+    return Array.from(this.values());
   }
 }

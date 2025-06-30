@@ -1,48 +1,40 @@
 from invert_binary_tree import invert_tree, invert_tree_recursive
-from tree import TreeNode
+from tree import Tree
 
 
 def test_invert_binary_tree_example_one() -> None:
-    root = TreeNode.from_array([4, 2, 7, 1, 3, 6, 9])
-    assert root is not None
-    inverted = invert_tree(root)
-    assert inverted is not None
-    assert list(inverted.values()) == [4, 7, 2, 9, 6, 3, 1]
+    tree = Tree([4, 2, 7, 1, 3, 6, 9])
+    tree.root = invert_tree(tree.root)
+    assert tree.to_list() == [4, 7, 2, 9, 6, 3, 1]
 
 
 def test_invert_binary_tree_example_two() -> None:
-    root = TreeNode.from_array([2, 1, 3])
-    assert root is not None
-    inverted = invert_tree(root)
-    assert inverted is not None
-    assert list(inverted.values()) == [2, 3, 1]
+    tree = Tree([2, 1, 3])
+    tree.root = invert_tree(tree.root)
+    assert tree.to_list() == [2, 3, 1]
 
 
 def test_invert_binary_tree_example_three() -> None:
-    root = TreeNode.from_array([])
-    assert root is None
-    inverted = invert_tree(root)
-    assert inverted is None
+    tree = Tree([])
+    assert tree.root is None
+    tree.root = invert_tree(tree.root)
+    assert tree.root is None
 
 
 def test_invert_binary_tree_recursive_example_one() -> None:
-    root = TreeNode.from_array([4, 2, 7, 1, 3, 6, 9])
-    assert root is not None
-    inverted = invert_tree_recursive(root)
-    assert inverted is not None
-    assert list(inverted.values()) == [4, 7, 2, 9, 6, 3, 1]
+    tree = Tree([4, 2, 7, 1, 3, 6, 9])
+    tree.root = invert_tree_recursive(tree.root)
+    assert tree.to_list() == [4, 7, 2, 9, 6, 3, 1]
 
 
 def test_invert_binary_tree_recursive_example_two() -> None:
-    root = TreeNode.from_array([2, 1, 3])
-    assert root is not None
-    inverted = invert_tree_recursive(root)
-    assert inverted is not None
-    assert list(inverted.values()) == [2, 3, 1]
+    tree = Tree([2, 1, 3])
+    tree.root = invert_tree_recursive(tree.root)
+    assert tree.to_list() == [2, 3, 1]
 
 
 def test_invert_binary_tree_recursive_example_three() -> None:
-    root = TreeNode.from_array([])
-    assert root is None
-    inverted = invert_tree_recursive(root)
-    assert inverted is None
+    tree = Tree([])
+    assert tree.root is None
+    tree.root = invert_tree_recursive(tree.root)
+    assert tree.root is None

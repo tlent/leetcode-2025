@@ -1,7 +1,8 @@
-from list import ListNode, List
+from typing import Optional
+from linked_list import ListNode
 
 
-def merge(a: List, b: List) -> List:
+def merge(a: Optional[ListNode], b: Optional[ListNode]) -> Optional[ListNode]:
     head = ListNode()
     cursor = head
     while a and b:

@@ -1,14 +1,14 @@
 from reverse_linked_list import reverse_list, reverse_list_recursive
-from list import ListNode
+from linked_list import List
 
 
 def test_reverse_list() -> None:
-    result = reverse_list(ListNode.from_values(range(5)))
-    assert result is not None
-    assert list(result.values()) == list(reversed(range(5)))
+    linked_list = List([1, 2, 3, 4, 5])
+    linked_list.head = reverse_list(linked_list.head)
+    assert linked_list.to_list() == [5, 4, 3, 2, 1]
 
 
 def test_reverse_list_recursive() -> None:
-    result = reverse_list_recursive(ListNode.from_values(range(5)))
-    assert result is not None
-    assert list(result.values()) == list(reversed(range(5)))
+    linked_list = List([1, 2, 3, 4, 5])
+    linked_list.head = reverse_list_recursive(linked_list.head)
+    assert linked_list.to_list() == [5, 4, 3, 2, 1]

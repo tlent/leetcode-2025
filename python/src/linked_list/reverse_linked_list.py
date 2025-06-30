@@ -1,7 +1,8 @@
-from list import List
+from typing import Optional
+from linked_list import ListNode
 
 
-def reverse_list(head: List) -> List:
+def reverse_list(head: Optional[ListNode]) -> Optional[ListNode]:
     prev = None
     cursor = head
     while cursor:
@@ -12,7 +13,7 @@ def reverse_list(head: List) -> List:
     return prev
 
 
-def reverse_list_recursive(head: List) -> List:
+def reverse_list_recursive(head: Optional[ListNode]) -> Optional[ListNode]:
     if not head or not head.next:
         return head
 

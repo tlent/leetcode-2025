@@ -1,6 +1,6 @@
-import { List } from "./list";
+import { ListNode } from "./linked-list";
 
-export function hasCycle(head: List): boolean {
+export function hasCycle(head: ListNode | null): boolean {
   let slow = head;
   let fast = head;
   while (slow && fast?.next) {

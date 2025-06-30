@@ -1,6 +1,6 @@
-import { List, ListNode } from "./list";
+import { ListNode } from "./linked-list";
 
-export function merge(a: List, b: List): List {
+export function merge(a: ListNode | null, b: ListNode | null): ListNode | null {
   const head = new ListNode();
   let cursor = head;
   while (a && b) {

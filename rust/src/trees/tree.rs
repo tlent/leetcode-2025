@@ -1,12 +1,9 @@
 use std::{cell::RefCell, collections::VecDeque, rc::Rc};
-
-pub type Tree = Option<Rc<RefCell<TreeNode>>>;
-
 #[derive(Debug, PartialEq, Eq, Default)]
 pub struct TreeNode {
-    value: i32,
-    left: Tree,
-    right: Tree,
+    pub value: i32,
+    pub left: Option<Rc<RefCell<TreeNode>>>,
+    pub right: Option<Rc<RefCell<TreeNode>>>,
 }
 
 impl TreeNode {
@@ -18,14 +15,19 @@ impl TreeNode {
             right: None,
         }
     }
+}
 
-    pub fn from_array<T: IntoIterator<Item = i32>>(values: T) -> Tree {
+#[derive(Debug, Clone, PartialEq, Eq, Default)]
+pub struct Tree(pub Option<Rc<RefCell<TreeNode>>>);
+
+impl Tree {
+    pub fn new(values: &[i32]) -> Self {
         let mut nodes: Vec<_> = values
-            .into_iter()
-            .map(|value| Rc::new(RefCell::new(TreeNode::new(value))))
+            .iter()
+            .map(|&value| Rc::new(RefCell::new(TreeNode::new(value))))
             .collect();
         if nodes.is_empty() {
-            return None;
+            return Tree(None);
         }
         for (i, node) in nodes.iter().enumerate() {
             let left_index = i * 2 + 1;
@@ -37,16 +39,12 @@ impl TreeNode {
                 node.borrow_mut().right = Some(nodes[right_index].clone());
             }
         }
-        Some(nodes.remove(0))
+        Tree(Some(nodes.remove(0)))
     }
 
-    pub fn values(root: &Tree) -> impl Iterator<Item = i32> {
-        Self::nodes(root).map(|node| node.borrow().value)
-    }
-
-    pub fn nodes(root: &Tree) -> impl Iterator<Item = Rc<RefCell<TreeNode>>> {
+    pub fn nodes(&self) -> impl Iterator<Item = Rc<RefCell<TreeNode>>> {
         let mut queue = VecDeque::new();
-        if let Some(root_node) = root {
+        if let Some(root_node) = &self.0 {
             queue.push_back(root_node.clone());
         }
         std::iter::from_fn(move || match queue.pop_front() {
@@ -61,5 +59,13 @@ impl TreeNode {
                 Some(node)
             }
         })
+    }
+
+    pub fn values(&self) -> impl Iterator<Item = i32> {
+        self.nodes().map(|node| node.borrow().value)
+    }
+
+    pub fn to_vec(&self) -> Vec<i32> {
+        self.values().collect()
     }
 }

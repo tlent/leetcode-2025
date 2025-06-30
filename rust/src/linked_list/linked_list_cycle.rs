@@ -1,8 +1,8 @@
-use std::rc::Rc;
+use std::{cell::RefCell, rc::Rc};
 
-use crate::linked_list::list::RcList;
+use crate::linked_list::list::SharedListNode;
 
-pub fn has_cycle(head: RcList) -> bool {
+pub fn has_cycle(head: Option<Rc<RefCell<SharedListNode>>>) -> bool {
     let mut slow = head.as_ref().map(Rc::clone);
     let mut fast = head.as_ref().map(Rc::clone);
 
@@ -35,28 +35,29 @@ pub fn has_cycle(head: RcList) -> bool {
 
 #[cfg(test)]
 mod tests {
-    use crate::linked_list::list::{RcListNode, test_utils};
+    use crate::linked_list::list::SharedList;
 
     use super::*;
 
     #[test]
     fn test_example_one() {
-        let head = RcListNode::from_values([3, 2, 0, -4]).unwrap();
-        test_utils::create_cycle(&head, 1);
-        assert!(has_cycle(Some(head)));
+        let list = SharedList::new(&[3, 2, 0, -4]);
+        let nodes = list.nodes().collect::<Vec<_>>();
+        nodes[nodes.len() - 1].borrow_mut().next = Some(nodes[1].clone());
+        assert!(has_cycle(list.0));
     }
 
     #[test]
     fn test_example_two() {
-        let head = RcListNode::from_values([1, 2]).unwrap();
-        test_utils::create_cycle(&head, 0);
-        assert!(has_cycle(Some(head)));
+        let list = SharedList::new(&[1, 2]);
+        let nodes = list.nodes().collect::<Vec<_>>();
+        nodes[nodes.len() - 1].borrow_mut().next = Some(nodes[0].clone());
+        assert!(has_cycle(list.0));
     }
 
     #[test]
     fn test_example_three() {
-        let head = RcListNode::from_values([1]).unwrap();
-        // No cycle
-        assert!(!has_cycle(Some(head)));
+        let list = SharedList::new(&[1]);
+        assert!(!has_cycle(list.0));
     }
 }

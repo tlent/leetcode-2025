@@ -1,36 +1,44 @@
-export type Tree = TreeNode | null;
-
 export class TreeNode {
   value: number;
-  left: Tree;
-  right: Tree;
+  left: TreeNode | null;
+  right: TreeNode | null;
 
-  constructor(value = 0, left: Tree = null, right: Tree = null) {
+  constructor(
+    value = 0,
+    left: TreeNode | null = null,
+    right: TreeNode | null = null,
+  ) {
     this.value = value;
     this.left = left;
     this.right = right;
   }
+}
 
-  static from_array(values: Iterable<number>): Tree {
-    const nodes = Array.from(values).map((value) => new TreeNode(value));
+export class Tree {
+  public root: TreeNode | null;
+
+  constructor(values: number[]) {
+    const nodes = values.map((value) => new TreeNode(value));
     if (nodes.length === 0) {
-      return null;
-    }
-    for (const [i, node] of nodes.entries()) {
-      const left_index = i * 2 + 1;
-      if (left_index < nodes.length) {
-        node.left = nodes[left_index]!;
+      this.root = null;
+    } else {
+      for (const [i, node] of nodes.entries()) {
+        const left_index = i * 2 + 1;
+        if (left_index < nodes.length) {
+          node.left = nodes[left_index]!;
+        }
+        const right_index = left_index + 1;
+        if (right_index < nodes.length) {
+          node.right = nodes[right_index]!;
+        }
       }
-      const right_index = left_index + 1;
-      if (right_index < nodes.length) {
-        node.right = nodes[right_index]!;
-      }
+      this.root = nodes[0]!;
     }
-    return nodes[0]!;
   }
 
   *nodes(): Generator<TreeNode> {
-    const queue: TreeNode[] = [this];
+    if (!this.root) return;
+    const queue: TreeNode[] = [this.root];
     while (queue.length > 0) {
       const node = queue.shift()!;
       if (node.left) {
@@ -47,5 +55,9 @@ export class TreeNode {
     for (const node of this.nodes()) {
       yield node.value;
     }
+  }
+
+  toArray(): number[] {
+    return Array.from(this.values());
   }
 }

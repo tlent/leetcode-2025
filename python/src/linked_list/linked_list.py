@@ -1,27 +1,28 @@
 from __future__ import annotations
-from typing import Iterable, Iterator, Optional
+from typing import Iterator, Optional
 
 
 class ListNode:
-    def __init__(self, value: int = 0, next: List = None):
+    def __init__(self, value: int = 0, next: Optional[ListNode] = None):
         self.value = value
         self.next = next
 
-    @classmethod
-    def from_values(cls, values: Iterable[int]) -> List:
+
+class List:
+    def __init__(self, values: list[int]):
         head = None
         cursor = None
         for value in values:
-            node = cls(value)
+            node = ListNode(value)
             if cursor is None:
                 head = node
             else:
                 cursor.next = node
             cursor = node
-        return head
+        self.head = head
 
     def nodes(self) -> Iterator[ListNode]:
-        cursor: List = self
+        cursor = self.head
         while cursor:
             yield cursor
             cursor = cursor.next
@@ -29,5 +30,5 @@ class ListNode:
     def values(self) -> Iterator[int]:
         return map(lambda node: node.value, self.nodes())
 
-
-List = Optional[ListNode]
+    def to_list(self) -> list[int]:
+        return list(self.values())

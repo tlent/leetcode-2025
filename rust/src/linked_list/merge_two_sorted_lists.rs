@@ -1,7 +1,7 @@
-use crate::linked_list::list::{BoxList, BoxListNode};
+use crate::linked_list::list::ListNode;
 
-pub fn merge(mut a: BoxList, mut b: BoxList) -> BoxList {
-    let mut head = BoxListNode::default();
+pub fn merge(mut a: Option<Box<ListNode>>, mut b: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+    let mut head = ListNode::default();
     let mut cursor = &mut head;
 
     while a.is_some() && b.is_some() {
@@ -22,16 +22,15 @@ pub fn merge(mut a: BoxList, mut b: BoxList) -> BoxList {
 
 #[cfg(test)]
 mod tests {
+    use crate::linked_list::list::List;
+
     use super::*;
 
     #[test]
     fn test_merge() {
-        let a = BoxListNode::from_values([1, 2, 4]);
-        let b = BoxListNode::from_values([1, 3, 4]);
-        let result = merge(a, b);
-        assert_eq!(
-            result.unwrap().values().collect::<Vec<_>>(),
-            vec![1, 1, 2, 3, 4, 4]
-        );
+        let mut a = List::new(&[1, 2, 4]);
+        let b = List::new(&[1, 3, 4]);
+        a.0 = merge(a.0, b.0);
+        assert_eq!(a.to_vec(), vec![1, 1, 2, 3, 4, 4]);
     }
 }
