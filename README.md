@@ -1,9 +1,12 @@
 # LeetCode Solutions 2025
 
-LeetCode solutions implemented in Rust, TypeScript, and Python with optimal
-algorithms and idiomatic clean code patterns.
+LeetCode solutions implemented in Rust, TypeScript, and Python. Each solution
+follows clean, idiomatic coding patterns with a focus on optimal time and space
+complexity.
 
-[Grind 75](https://www.techinterviewhandbook.org/grind75/)
+Currently working through the
+[Grind 75 problem set](https://www.techinterviewhandbook.org/grind75/), a
+curated list of LeetCode problems for coding interview prep.
 
 ## Usage
 
@@ -67,9 +70,27 @@ uv run pre-commit run
 uv run pre-commit --all-files
 ```
 
+## Continuous Integration (CI)
+
+All code is automatically checked on push and pull requests to the main branch
+using GitHub Actions.
+
+The CI pipeline runs:
+
+- Dependency installation for Python, TypeScript, and Rust
+- Static analysis and tests for all files
+- Caching for faster runs
+- Workflow file:
+  [.github/workflows/ci.yml](https://github.com/tlent/leetcode-2025/blob/main/.github/workflows/ci.yml)
+
 ## Testing Approach
 
 - **LeetCode examples**: All test cases use actual LeetCode problem examples
 - **Separate test files**: `_test.py`, `.test.ts`, `.test.rs` files alongside
   implementations
-- **Test frameworks**: pytest, bun test, cargo test
+- **Test frameworks**: `pytest`, `bun test`, `cargo test`
+
+## License
+
+MIT License. See
+[LICENSE](https://github.com/tlent/leetcode-2025/blob/main/LICENSE) for details.
