@@ -54,3 +54,8 @@ pub mod n0242_valid_anagram;
 #[cfg(test)]
 #[path = "n0242_valid_anagram.test.rs"]
 mod n0242_valid_anagram_tests;
+
+pub mod n0704_binary_search;
+#[cfg(test)]
+#[path = "n0704_binary_search.test.rs"]
+mod n0704_binary_search_tests;

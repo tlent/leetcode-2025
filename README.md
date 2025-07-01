@@ -50,11 +50,11 @@ bunx biome check --write && bunx tsc --noEmit && bun test
 cd rust
 
 cargo fmt     # Format code
-cargo clippy  # Lint code
 cargo check   # Type check
+cargo clippy  # Lint code
 cargo test    # Run tests
 
-cargo fmt && cargo clippy && cargo check && cargo test
+cargo fmt && cargo check && cargo clippy && cargo test
 ```
 
 ## Pre-commit Hooks
