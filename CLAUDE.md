@@ -9,16 +9,23 @@ algorithms and idiomatic clean code patterns.
 
 ## Usage
 
+### Required Tools
+
+- **Python**: [uv](https://docs.astral.sh/uv/getting-started/installation/)
+- **TypeScript**: [bun](https://bun.sh/docs/installation)
+- **Rust**: [cargo](https://www.rust-lang.org/tools/install),
+  [clippy](https://github.com/rust-lang/rust-clippy)
+
 ### Python Usage
 
 ```bash
 cd python
+uv sync --dev       # Install dependencies
 
-uv sync --dev                    # Install dependencies
-uv run ruff format              # Format code
-uv run ruff check               # Lint code
-uv run mypy src/                # Type check
-uv run pytest                  # Run tests
+uv run ruff format  # Format code
+uv run ruff check   # Lint code
+uv run mypy src/    # Type check
+uv run pytest       # Run tests
 
 uv run ruff format && uv run ruff check && uv run mypy src/ && uv run pytest
 ```
@@ -27,11 +34,11 @@ uv run ruff format && uv run ruff check && uv run mypy src/ && uv run pytest
 
 ```bash
 cd typescript
+bun install                 # Install dependencies
 
-bun install                     # Install dependencies
-bunx biome check --write .      # Format and lint
-bunx tsc --noEmit              # Type check
-bun test                       # Run tests
+bunx biome check --write .  # Format and lint
+bunx tsc --noEmit           # Type check
+bun test                    # Run tests
 
 bunx biome check --write && bunx tsc --noEmit && bun test
 ```
@@ -41,10 +48,10 @@ bunx biome check --write && bunx tsc --noEmit && bun test
 ```bash
 cd rust
 
-cargo fmt                      # Format code
-cargo clippy                   # Lint code
-cargo check                    # Type check
-cargo test                     # Run tests
+cargo fmt     # Format code
+cargo clippy  # Lint code
+cargo check   # Type check
+cargo test    # Run tests
 
 cargo fmt && cargo clippy && cargo check && cargo test
 ```
@@ -55,10 +62,10 @@ cargo fmt && cargo clippy && cargo check && cargo test
 # Install pre-commit hooks
 uv run pre-commit install
 
-# Run static analysis and tests for changed files
+# Run all static analysis and tests for changed files
 uv run pre-commit run
 
-# Run static analysis and tests for all files
+# Run all static analysis and tests for all files
 uv run pre-commit --all-files
 ```
 
