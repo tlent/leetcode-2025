@@ -19,27 +19,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-
-    - uses: dtolnay/rust-toolchain@stable
-      with:
-        components: rustfmt, clippy
-
+    - run: rustup toolchain install stable --profile minimal --no-self-update
     - uses: Swatinem/rust-cache@v2
       with:
         workspaces: rust
-
-    - name: cargo fmt
-      working-directory: ./rust
-      run: cargo fmt --check
-
-    - name: cargo check
-      working-directory: ./rust
-      run: cargo check
-
-    - name: cargo clippy
-      working-directory: ./rust
-      run: cargo clippy --all-targets --all-features -- -D warnings
-
-    - name: cargo test
-      working-directory: ./rust
-      run: cargo test --verbose
+    - working-directory: ./rust
+      run: |
+        cargo fmt --check
+        cargo check
+        cargo clippy --all-targets --all-features -- -D warnings
+        cargo test --verbose

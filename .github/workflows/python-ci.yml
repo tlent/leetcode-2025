@@ -19,29 +19,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-
     - uses: astral-sh/setup-uv@v4
       with:
         version: "latest"
         enable-cache: true
         cache-dependency-glob: "python/uv.lock"
-
-    - name: uv sync
-      working-directory: ./python
-      run: uv sync --dev
-
-    - name: ruff format
-      working-directory: ./python
-      run: uv run ruff format --check
-
-    - name: ruff check
-      working-directory: ./python
-      run: uv run ruff check
-
-    - name: mypy
-      working-directory: ./python
-      run: uv run mypy src/
-
-    - name: pytest
-      working-directory: ./python
-      run: uv run pytest -v
+    - working-directory: ./python
+      run: |
+        uv sync --dev
+        uv run ruff format --check
+        uv run ruff check
+        uv run mypy src/
+        uv run pytest -v

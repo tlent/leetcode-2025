@@ -19,23 +19,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-
     - uses: oven-sh/setup-bun@v2
       with:
         bun-version: latest
-
-    - name: bun install
-      working-directory: ./typescript
-      run: bun install
-
-    - name: biome check
-      working-directory: ./typescript
-      run: bunx biome check
-
-    - name: tsc --noEmit
-      working-directory: ./typescript
-      run: bunx tsc --noEmit
-
-    - name: bun test
-      working-directory: ./typescript
-      run: bun test
+    - working-directory: ./typescript
+      run: |
+        bun install
+        bunx biome check
+        bunx tsc --noEmit
+        bun test
