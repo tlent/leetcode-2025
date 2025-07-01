@@ -7,7 +7,7 @@ algorithms and idiomatic clean code patterns.
 
 ## Usage
 
-### Python
+### Python Usage
 
 ```bash
 cd python
@@ -21,7 +21,7 @@ uv run pytest                  # Run tests
 uv run ruff format && uv run ruff check && uv run mypy src/ && uv run pytest
 ```
 
-### TypeScript
+### TypeScript Usage
 
 ```bash
 cd typescript
@@ -34,7 +34,7 @@ bun test                       # Run tests
 bunx biome check --write && bunx tsc --noEmit && bun test
 ```
 
-### Rust
+### Rust Usage
 
 ```bash
 cd rust
@@ -49,20 +49,20 @@ cargo fmt && cargo clippy && cargo check && cargo test
 
 ## Testing Approach
 
-### TypeScript
+### Test Coverage
+
+- **LeetCode examples**: All test cases use actual LeetCode problem examples
+
+### TypeScript Testing
 
 - **Separate test files**: `.test.ts` files alongside implementations
 - **Test framework**: Bun test
 
-### Python
+### Python Testing
 
 - **Separate test files**: `test_*.py` files alongside implementations
 - **pytest framework**: Standard Python testing with automatic discovery
 
-### Rust
+### Rust Testing
 
 - **Inline test modules**: `#[cfg(test)] mod tests` in each source file
-
-### Coverage
-
-- **LeetCode examples**: All test cases use actual LeetCode problem examples
