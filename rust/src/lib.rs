@@ -59,3 +59,8 @@ pub mod n0704_binary_search;
 #[cfg(test)]
 #[path = "n0704_binary_search.test.rs"]
 mod n0704_binary_search_tests;
+
+pub mod n0733_flood_fill;
+#[cfg(test)]
+#[path = "n0733_flood_fill.test.rs"]
+mod n0733_flood_fill_tests;
