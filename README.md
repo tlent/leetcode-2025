@@ -3,6 +3,8 @@
 LeetCode solutions implemented in Rust, TypeScript, and Python with optimal
 algorithms and idiomatic clean code patterns.
 
+[Grind 75](https://www.techinterviewhandbook.org/grind75/)
+
 ## Usage
 
 ### Python
