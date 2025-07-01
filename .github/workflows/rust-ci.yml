@@ -1,0 +1,45 @@
+name: Rust CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'rust/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'rust/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: dtolnay/rust-toolchain@stable
+      with:
+        components: rustfmt, clippy
+
+    - uses: Swatinem/rust-cache@v2
+      with:
+        workspaces: rust
+
+    - name: cargo fmt
+      working-directory: ./rust
+      run: cargo fmt --check
+
+    - name: cargo check
+      working-directory: ./rust
+      run: cargo check
+
+    - name: cargo clippy
+      working-directory: ./rust
+      run: cargo clippy --all-targets --all-features -- -D warnings
+
+    - name: cargo test
+      working-directory: ./rust
+      run: cargo test --verbose
