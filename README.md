@@ -49,21 +49,20 @@ cargo fmt && cargo clippy && cargo check && cargo test
 
 ## Pre-commit Hooks
 
-Use pre-commit hooks to run all static analysis and tests:
-
 ```bash
-# Install and run pre-commit hooks (runs only on changed files)
-pip install pre-commit
-pre-commit install
-pre-commit run
+# Install pre-commit hooks
+uv run pre-commit install
 
-# Run all checks and tests manually on all files
-pre-commit run --all-files
+# Run all static analysis and tests for changed files
+uv run pre-commit run
+
+# Run all static analysis and tests for all files
+uv run pre-commit --all-files
 ```
 
 ## Testing Approach
 
 - **LeetCode examples**: All test cases use actual LeetCode problem examples
-- **Separate test files**: `_tyest.py`, `.test.ts`, `.test.rs` files alongside
+- **Separate test files**: `_test.py`, `.test.ts`, `.test.rs` files alongside
   implementations
 - **Test frameworks**: pytest, bun test, cargo test
