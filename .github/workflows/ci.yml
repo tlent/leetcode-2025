@@ -3,8 +3,16 @@ name: CI
 on:
   push:
     branches: [main]
+    paths:
+      - 'rust/**'
+      - 'typescript/**'
+      - 'python/**'
   pull_request:
     branches: [main]
+    paths:
+      - 'rust/**'
+      - 'typescript/**'
+      - 'python/**'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
