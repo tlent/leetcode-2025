@@ -1,5 +1,5 @@
-from invert_binary_tree import invert_tree, invert_tree_recursive
-from tree import Tree
+from p0226_invert_binary_tree import invert_tree, invert_tree_recursive
+from utils.tree import Tree
 
 
 def test_invert_binary_tree_example_one() -> None:

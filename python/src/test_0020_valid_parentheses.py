@@ -1,4 +1,4 @@
-from valid_parentheses import valid_parentheses
+from p0020_valid_parentheses import valid_parentheses
 
 
 def test_valid_parentheses() -> None:

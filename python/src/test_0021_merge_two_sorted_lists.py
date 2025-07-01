@@ -1,5 +1,5 @@
-from merge_two_sorted_lists import merge
-from linked_list import List
+from p0021_merge_two_sorted_lists import merge
+from utils.linked_list import List
 
 
 def test_merge() -> None:

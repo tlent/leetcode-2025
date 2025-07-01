@@ -1,4 +1,4 @@
-from contains_duplicate import has_duplicate, has_duplicate_early_return
+from p0217_contains_duplicate import has_duplicate, has_duplicate_early_return
 
 
 def test_has_duplicate() -> None:

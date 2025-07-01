@@ -1,4 +1,4 @@
-from valid_anagram import is_anagram
+from p0242_valid_anagram import is_anagram
 
 
 def test_is_anagram() -> None:

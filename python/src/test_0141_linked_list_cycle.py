@@ -1,5 +1,5 @@
-from linked_list_cycle import has_cycle
-from linked_list import List
+from p0141_linked_list_cycle import has_cycle
+from utils.linked_list import List
 
 
 def test_has_cycle_example_one() -> None:

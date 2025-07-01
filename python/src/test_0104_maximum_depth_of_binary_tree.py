@@ -1,5 +1,5 @@
-from tree import Tree
-from maximum_depth_of_binary_tree import max_depth
+from utils.tree import Tree
+from p0104_maximum_depth_of_binary_tree import max_depth
 
 
 def test_max_depth_example_one() -> None:

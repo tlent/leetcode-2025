@@ -1,4 +1,4 @@
-from two_sum import two_sum
+from p0001_two_sum import two_sum
 
 
 def test_two_sum() -> None:

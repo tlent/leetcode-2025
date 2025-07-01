@@ -1,4 +1,4 @@
-from valid_palindrome import is_palindrome, is_palindrome_two_pointer
+from p0125_valid_palindrome import is_palindrome, is_palindrome_two_pointer
 
 
 def test_is_palindrome() -> None:

@@ -1,5 +1,5 @@
 from typing import Optional
-from linked_list import ListNode
+from utils.linked_list import ListNode
 
 
 def merge(a: Optional[ListNode], b: Optional[ListNode]) -> Optional[ListNode]:

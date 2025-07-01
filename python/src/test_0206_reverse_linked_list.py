@@ -1,5 +1,5 @@
-from reverse_linked_list import reverse_list, reverse_list_recursive
-from linked_list import List
+from p0206_reverse_linked_list import reverse_list, reverse_list_recursive
+from utils.linked_list import List
 
 
 def test_reverse_list() -> None:

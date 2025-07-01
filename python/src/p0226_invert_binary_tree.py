@@ -1,5 +1,5 @@
 from typing import Optional
-from tree import TreeNode
+from utils.tree import TreeNode
 
 
 def invert_tree(root: Optional[TreeNode]) -> Optional[TreeNode]:
