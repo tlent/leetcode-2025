@@ -47,22 +47,23 @@ cargo test                     # Run tests
 cargo fmt && cargo clippy && cargo check && cargo test
 ```
 
+## Pre-commit Hooks
+
+Use pre-commit hooks to run all static analysis and tests:
+
+```bash
+# Install and run pre-commit hooks (runs only on changed files)
+pip install pre-commit
+pre-commit install
+pre-commit run
+
+# Run all checks and tests manually on all files
+pre-commit run --all-files
+```
+
 ## Testing Approach
 
-### Test Coverage
-
 - **LeetCode examples**: All test cases use actual LeetCode problem examples
-
-### TypeScript Testing
-
-- **Separate test files**: `.test.ts` files alongside implementations
-- **Test framework**: Bun test
-
-### Python Testing
-
-- **Separate test files**: `test_*.py` files alongside implementations
-- **pytest framework**: Standard Python testing with automatic discovery
-
-### Rust Testing
-
-- **Inline test modules**: `#[cfg(test)] mod tests` in each source file
+- **Separate test files**: `_tyest.py`, `.test.ts`, `.test.rs` files alongside
+  implementations
+- **Test frameworks**: pytest, bun test, cargo test
