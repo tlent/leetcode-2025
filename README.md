@@ -7,6 +7,12 @@ algorithms and idiomatic clean code patterns.
 
 ## Usage
 
+### Required Tools
+
+- **Python**: [uv](https://docs.astral.sh/uv/getting-started/installation/)
+- **TypeScript**: [bun](https://bun.sh/docs/installation)
+- **Rust**: [cargo](https://www.rust-lang.org/tools/install)
+
 ### Python Usage
 
 ```bash
