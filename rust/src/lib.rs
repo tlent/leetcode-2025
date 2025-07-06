@@ -64,3 +64,8 @@ pub mod n0733_flood_fill;
 #[cfg(test)]
 #[path = "n0733_flood_fill.test.rs"]
 mod n0733_flood_fill_tests;
+
+pub mod n0235_lowest_common_ancestor_of_a_binary_search_tree;
+#[cfg(test)]
+#[path = "n0235_lowest_common_ancestor_of_a_binary_search_tree.test.rs"]
+mod n0235_lowest_common_ancestor_of_a_binary_search_tree_tests;

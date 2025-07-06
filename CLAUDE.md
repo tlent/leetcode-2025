@@ -120,3 +120,45 @@ Collect helpful notes here of solution patterns we discover
 - Clean input first vs. skip-while-processing approaches
 - Character code manipulation for performance
 - Consider both directions (start/end pointers)
+
+### Tree Traversal
+
+- BST property: leverage ordering for O(log n) operations
+- LCA in BST: find split point where values diverge
+- Iterative vs recursive: consider space complexity tradeoffs
+
+## Study Notes Documentation
+
+For each new LeetCode problem solved, add comprehensive study notes to `LEETCODE_STUDY_NOTES.md` using this format:
+
+### Problem Study Template
+```markdown
+### NXXXX - Problem Title
+**Key insight**: The core "aha" moment that unlocks the solution
+**Algorithm rule**: The decision logic or pattern to follow
+**Code pattern**: Template code structure
+**Memory tricks**: How to remember the approach in interviews
+**Time/space**: Complexity analysis
+**Common mistakes**: Pitfalls to avoid
+**Language notes**: Implementation differences across Rust/TypeScript/Python
+```
+
+### Documentation Requirements
+- Add notes immediately after solving each problem
+- Include cross-language implementation differences
+- Focus on interview recall (insights, patterns, memory tricks)
+- Group problems by algorithm patterns for easy review
+- Update pattern sections when discovering new insights
+
+### Pattern Recognition
+When solving problems, identify which pattern category it belongs to:
+- Hash Map/Set Pattern
+- Two Pointers
+- Stack Pattern
+- Linked List Manipulation
+- Tree Traversal
+- Dynamic Programming
+- Binary Search
+- Graph Traversal
+
+Add new patterns as they are discovered and document the key characteristics of each pattern.
