@@ -79,3 +79,8 @@ pub mod n0232_implement_queue_using_stacks;
 #[cfg(test)]
 #[path = "n0232_implement_queue_using_stacks.test.rs"]
 mod n0232_implement_queue_using_stacks_tests;
+
+pub mod n0278_first_bad_version;
+#[cfg(test)]
+#[path = "n0278_first_bad_version.test.rs"]
+mod n0278_first_bad_version_tests;
