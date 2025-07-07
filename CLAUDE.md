@@ -115,6 +115,12 @@ Collect helpful notes here of solution patterns we discover
 - Use `Map`/`dict` for complement searches (Two Sum pattern)
 - Consider character counting arrays for string problems
 
+### Stack Pattern
+
+- Two-stack queue implementation: use input stack for enqueue, output stack for dequeue
+- Transfer elements only when output stack is empty for amortized O(1) performance
+- LIFO to FIFO conversion through double reversal
+
 ### Two Pointers
 
 - Clean input first vs. skip-while-processing approaches
@@ -126,6 +132,8 @@ Collect helpful notes here of solution patterns we discover
 - BST property: leverage ordering for O(log n) operations
 - LCA in BST: find split point where values diverge
 - Iterative vs recursive: consider space complexity tradeoffs
+- Balance checking: combine height calculation with balance validation in single pass
+- Early termination: return None/null to signal imbalance and propagate up
 
 ## Study Notes Documentation
 

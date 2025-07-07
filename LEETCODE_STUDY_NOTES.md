@@ -401,6 +401,66 @@ property **Language notes**:
 - TypeScript: Non-null assertions after null checks
 - Python: Clean min/max calculations, Optional types
 
+### N0110 - Balanced Binary Tree
+
+**Key insight**: Combine height calculation with balance checking in single pass
+**Algorithm rule**: Return -1 (or None/null) to signal imbalance, propagate up
+**Code pattern**:
+
+```py
+def isBalanced(root):
+    def height(node):
+        if not node:
+            return 0
+        left = height(node.left)
+        right = height(node.right)
+        if left == -1 or right == -1 or abs(left - right) > 1:
+            return -1
+        return 1 + max(left, right)
+    return height(root) != -1
+```
+
+**Memory tricks**: Think "height with early exit" - if imbalanced, bail out
+**Time/space**: O(n) time, O(h) space
+**Common mistakes**: Calculating height multiple times instead of single pass
+**Language notes**:
+- Rust: Uses `Option<u32>` with `?` operator, `abs_diff()` for unsigned math
+- TypeScript: Uses `number | null` with explicit null checks
+- Python: Uses `Optional[int]` with -1 sentinel value
+
+### N0232 - Implement Queue using Stacks
+
+**Key insight**: Use two stacks - input for enqueue, output for dequeue
+**Algorithm rule**: Transfer from input to output only when output is empty
+**Code pattern**:
+
+```py
+class MyQueue:
+    def __init__(self):
+        self.input = []
+        self.output = []
+    
+    def push(self, x):
+        self.input.append(x)
+    
+    def pop(self):
+        self._transfer()
+        return self.output.pop()
+    
+    def _transfer(self):
+        if not self.output:
+            while self.input:
+                self.output.append(self.input.pop())
+```
+
+**Memory tricks**: Think "lazy transfer" - only move when output is empty
+**Time/space**: Amortized O(1) for all operations, O(n) space
+**Common mistakes**: Transferring on every operation instead of lazy transfer
+**Language notes**:
+- Rust: Uses `Vec<i32>` with `unwrap()` for guaranteed non-empty pops
+- TypeScript: Uses arrays with explicit null assertions
+- Python: Uses lists as stacks, cleanest implementation
+
 ---
 
 ## Quick Reference by Pattern
@@ -420,6 +480,7 @@ property **Language notes**:
 ### Stack Problems
 
 - N0020 Valid Parentheses - bracket matching
+- N0232 Implement Queue using Stacks - two-stack pattern
 - N0733 Flood Fill - DFS with stack
 
 ### Linked List Problems
@@ -431,6 +492,7 @@ property **Language notes**:
 ### Tree Problems
 
 - N0104 Maximum Depth - DFS traversal
+- N0110 Balanced Binary Tree - height-based balance check
 - N0226 Invert Binary Tree - tree transformation
 - N0235 LCA of BST - BST property navigation
 
