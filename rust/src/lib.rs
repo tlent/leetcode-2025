@@ -74,3 +74,8 @@ pub mod n0110_balanced_binary_tree;
 #[cfg(test)]
 #[path = "n0110_balanced_binary_tree.test.rs"]
 mod n0110_balanced_binary_tree_tests;
+
+pub mod n0232_implement_queue_using_stacks;
+#[cfg(test)]
+#[path = "n0232_implement_queue_using_stacks.test.rs"]
+mod n0232_implement_queue_using_stacks_tests;
