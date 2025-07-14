@@ -99,3 +99,8 @@ pub mod n0409_longest_palindrome;
 #[cfg(test)]
 #[path = "n0409_longest_palindrome.test.rs"]
 mod n0409_longest_palindrome_tests;
+
+pub mod n0169_majority_element;
+#[cfg(test)]
+#[path = "n0169_majority_element.test.rs"]
+mod n0169_majority_element_tests;
