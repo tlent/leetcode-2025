@@ -89,3 +89,8 @@ pub mod n0383_ransom_note;
 #[cfg(test)]
 #[path = "n0383_ransom_note.test.rs"]
 mod n0383_ransom_note_tests;
+
+pub mod n0070_climbing_stairs;
+#[cfg(test)]
+#[path = "n0070_climbing_stairs.test.rs"]
+mod n0070_climbing_stairs_tests;
