@@ -94,3 +94,8 @@ pub mod n0070_climbing_stairs;
 #[cfg(test)]
 #[path = "n0070_climbing_stairs.test.rs"]
 mod n0070_climbing_stairs_tests;
+
+pub mod n0409_longest_palindrome;
+#[cfg(test)]
+#[path = "n0409_longest_palindrome.test.rs"]
+mod n0409_longest_palindrome_tests;
