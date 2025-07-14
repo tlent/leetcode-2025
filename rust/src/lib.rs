@@ -104,3 +104,8 @@ pub mod n0169_majority_element;
 #[cfg(test)]
 #[path = "n0169_majority_element.test.rs"]
 mod n0169_majority_element_tests;
+
+pub mod n0067_add_binary;
+#[cfg(test)]
+#[path = "n0067_add_binary.test.rs"]
+mod n0067_add_binary_tests;
