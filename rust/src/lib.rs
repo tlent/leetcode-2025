@@ -109,3 +109,8 @@ pub mod n0067_add_binary;
 #[cfg(test)]
 #[path = "n0067_add_binary.test.rs"]
 mod n0067_add_binary_tests;
+
+pub mod n0543_diameter_of_binary_tree;
+#[cfg(test)]
+#[path = "n0543_diameter_of_binary_tree.test.rs"]
+mod n0543_diameter_of_binary_tree_tests;
