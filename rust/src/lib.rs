@@ -114,3 +114,8 @@ pub mod n0543_diameter_of_binary_tree;
 #[cfg(test)]
 #[path = "n0543_diameter_of_binary_tree.test.rs"]
 mod n0543_diameter_of_binary_tree_tests;
+
+pub mod n0876_middle_of_the_linked_list;
+#[cfg(test)]
+#[path = "n0876_middle_of_the_linked_list.test.rs"]
+mod n0876_middle_of_the_linked_list_tests;
