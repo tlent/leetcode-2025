@@ -119,3 +119,5 @@ pub mod n0876_middle_of_the_linked_list;
 #[cfg(test)]
 #[path = "n0876_middle_of_the_linked_list.test.rs"]
 mod n0876_middle_of_the_linked_list_tests;
+
+pub mod n0053_maximum_subarray;
