@@ -1,5 +1,10 @@
 {
   "name": "leetcode-solutions-typescript",
+  "dependencies": {
+    "@datastructures-js/priority-queue": "6.3.3",
+    "@datastructures-js/queue": "4.2.3",
+    "@datastructures-js/deque": "1.0.5"
+  },
   "devDependencies": {
     "@biomejs/biome": "^2.0.6",
     "@types/bun": "latest",
