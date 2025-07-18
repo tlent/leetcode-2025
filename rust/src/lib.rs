@@ -120,6 +120,7 @@ pub mod n0876_middle_of_the_linked_list;
 #[path = "n0876_middle_of_the_linked_list.test.rs"]
 mod n0876_middle_of_the_linked_list_tests;
 
+pub mod n003_longest_substring_without_repeating_characters;
 pub mod n0053_maximum_subarray;
 pub mod n0057_insert_interval;
 pub mod n0542_01_matrix;
