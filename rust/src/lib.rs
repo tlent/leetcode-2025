@@ -123,3 +123,4 @@ mod n0876_middle_of_the_linked_list_tests;
 pub mod n0053_maximum_subarray;
 pub mod n0057_insert_interval;
 pub mod n0542_01_matrix;
+pub mod n0973_k_closest_points_to_origin;
