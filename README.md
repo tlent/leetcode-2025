@@ -75,20 +75,14 @@ uv run pre-commit --all-files
 All code is automatically checked on push and pull requests to the main branch
 using GitHub Actions.
 
-The CI pipeline runs:
-
-- Dependency installation for Python, TypeScript, and Rust
-- Static analysis and tests for all files
-- Caching for faster runs
-- Workflow file:
-  [.github/workflows/ci.yml](https://github.com/tlent/leetcode-2025/blob/main/.github/workflows/ci.yml)
+Workflow files: [rust](https://github.com/tlent/leetcode-2025/blob/main/.github/workflows/rust-ci.yml), [typescript](https://github.com/tlent/leetcode-2025/blob/main/.github/workflows/python-ci.yml), [python](https://github.com/tlent/leetcode-2025/blob/main/.github/workflows/typescript-ci.yml)
 
 ## Testing Approach
 
 - **LeetCode examples**: All test cases use actual LeetCode problem examples
-- **Separate test files**: `_test.py`, `.test.ts`, `.test.rs` files alongside
+- **Separate test files**: `.test.rs`, `.test.ts`, `_test.py` files alongside
   implementations
-- **Test frameworks**: `pytest`, `bun test`, `cargo test`
+- **Test frameworks**: `cargo test`, `bun test`, `pytest`
 
 ## License
 
