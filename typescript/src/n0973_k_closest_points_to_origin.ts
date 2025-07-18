@@ -16,7 +16,7 @@ export function kClosestHeap(
   points: [number, number][],
   k: number
 ): [number, number][] {
-  const heap = new PriorityQueue((a: [number, number], b: [number, number]) => {
+  const heap = new PriorityQueue<[number, number]>((a, b) => {
     return distance(b) - distance(a);
   });
   for (const point of points) {
