@@ -125,5 +125,6 @@ pub mod n0015_3_sum;
 pub mod n0053_maximum_subarray;
 pub mod n0057_insert_interval;
 pub mod n0102_binary_tree_level_order_traversal;
+pub mod n0133_clone_graph;
 pub mod n0542_01_matrix;
 pub mod n0973_k_closest_points_to_origin;
