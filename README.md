@@ -1,12 +1,8 @@
 # LeetCode Solutions 2025
 
-LeetCode solutions implemented in Rust, TypeScript, and Python. Each solution
-follows clean, idiomatic coding patterns with a focus on optimal time and space
-complexity.
-
-Currently working through the
-[Grind 75 problem set](https://www.techinterviewhandbook.org/grind75/), a
-curated list of LeetCode problems for coding interview prep.
+LeetCode solutions implemented in Rust, TypeScript, and Python. Many problems are
+solved in all three languages, while others are Python-only. Each solution follows
+clean, idiomatic coding patterns with a focus on optimal time and space complexity.
 
 ## Usage
 
