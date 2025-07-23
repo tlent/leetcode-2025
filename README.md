@@ -1,7 +1,6 @@
 # LeetCode Solutions 2025
 
-LeetCode solutions implemented in Rust, TypeScript, and Python. Many problems are
-solved in all three languages, while others are Python-only. Each solution follows
+LeetCode solutions implemented in Rust, TypeScript, and Python. Each solution follows
 clean, idiomatic coding patterns with a focus on optimal time and space complexity.
 
 ## Usage
