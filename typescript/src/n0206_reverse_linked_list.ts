@@ -1,4 +1,4 @@
-import type { ListNode } from './utils/linked_list';
+import type { ListNode } from "./utils/linked_list.ts";
 
 export function reverseList(head: ListNode | null): ListNode | null {
   let prev = null;

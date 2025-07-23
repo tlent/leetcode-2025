@@ -4,11 +4,11 @@ on:
   push:
     branches: [main]
     paths:
-      - 'python/**'
+      - "python/**"
   pull_request:
     branches: [main]
     paths:
-      - 'python/**'
+      - "python/**"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -18,16 +18,16 @@ jobs:
   python:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: astral-sh/setup-uv@v4
-      with:
-        version: "latest"
-        enable-cache: true
-        cache-dependency-glob: "python/uv.lock"
-    - working-directory: ./python
-      run: |
-        uv sync --dev
-        uv run ruff format --check
-        uv run ruff check
-        uv run mypy src/
-        uv run pytest -v
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v4
+        with:
+          version: "latest"
+          enable-cache: true
+          cache-dependency-glob: "python/uv.lock"
+      - working-directory: ./python
+        run: |
+          uv sync --dev
+          uv run ruff format --check
+          uv run ruff check
+          uv run mypy src/
+          uv run pytest -v

@@ -4,11 +4,11 @@ on:
   push:
     branches: [main]
     paths:
-      - 'rust/**'
+      - "rust/**"
   pull_request:
     branches: [main]
     paths:
-      - 'rust/**'
+      - "rust/**"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -18,14 +18,13 @@ jobs:
   rust:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - run: rustup toolchain install stable --profile minimal --no-self-update
-    - uses: Swatinem/rust-cache@v2
-      with:
-        workspaces: rust
-    - working-directory: ./rust
-      run: |
-        cargo fmt --check
-        cargo check
-        cargo clippy --all-targets --all-features -- -D warnings
-        cargo test --verbose
+      - uses: actions/checkout@v4
+      - run: rustup toolchain install stable --profile minimal --no-self-update
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: rust
+      - working-directory: ./rust
+        run: |
+          cargo fmt --check
+          cargo clippy --all-targets --all-features -- -D warnings
+          cargo test --verbose

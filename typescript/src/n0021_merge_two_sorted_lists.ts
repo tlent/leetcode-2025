@@ -1,4 +1,4 @@
-import { ListNode } from './utils/linked_list';
+import { ListNode } from "./utils/linked_list.ts";
 
 export function merge(a: ListNode | null, b: ListNode | null): ListNode | null {
   const head = new ListNode();

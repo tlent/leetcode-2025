@@ -1,4 +1,4 @@
-import type { TreeNode } from './utils/tree';
+import type { TreeNode } from "./utils/tree.ts";
 
 export function isBalanced(root: TreeNode | null): boolean {
   return checkBalance(root) !== null;

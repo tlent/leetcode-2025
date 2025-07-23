@@ -1,4 +1,4 @@
-import type { ListNode } from './utils/linked_list';
+import type { ListNode } from "./utils/linked_list.ts";
 
 export function middleNode(head: ListNode | null): ListNode | null {
   let fast = head;

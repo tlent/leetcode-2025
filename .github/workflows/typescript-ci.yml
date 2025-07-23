@@ -4,11 +4,11 @@ on:
   push:
     branches: [main]
     paths:
-      - 'typescript/**'
+      - "typescript/**"
   pull_request:
     branches: [main]
     paths:
-      - 'typescript/**'
+      - "typescript/**"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -18,13 +18,13 @@ jobs:
   typescript:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: oven-sh/setup-bun@v2
-      with:
-        bun-version: latest
-    - working-directory: ./typescript
-      run: |
-        bun install
-        bunx biome check
-        bunx tsc --noEmit
-        bun test
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - working-directory: ./typescript
+        run: |
+          deno install
+          deno fmt --check
+          deno lint
+          deno test

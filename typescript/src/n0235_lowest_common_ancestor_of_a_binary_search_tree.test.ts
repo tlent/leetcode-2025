@@ -1,9 +1,9 @@
-import { expect, test } from 'bun:test';
+import { expect } from "jsr:@std/expect";
 
-import { lowestCommonAncestor } from './n0235_lowest_common_ancestor_of_a_binary_search_tree';
-import { Tree } from './utils/tree';
+import { lowestCommonAncestor } from "./n0235_lowest_common_ancestor_of_a_binary_search_tree.ts";
+import { Tree } from "./utils/tree.ts";
 
-test('lowestCommonAncestor example one', () => {
+Deno.test("lowestCommonAncestor example one", () => {
   const tree = new Tree([6, 2, 8, 0, 4, 7, 9, null, null, 3, 5]);
 
   const nodes = Array.from(tree.nodes());
@@ -14,7 +14,7 @@ test('lowestCommonAncestor example one', () => {
   expect(lowestCommonAncestor(tree.root, p, q)).toEqual(expected);
 });
 
-test('lowestCommonAncestor example two', () => {
+Deno.test("lowestCommonAncestor example two", () => {
   const tree = new Tree([6, 2, 8, 0, 4, 7, 9, null, null, 3, 5]);
 
   const nodes = Array.from(tree.nodes());
@@ -25,7 +25,7 @@ test('lowestCommonAncestor example two', () => {
   expect(lowestCommonAncestor(tree.root, p, q)).toEqual(expected);
 });
 
-test('lowestCommonAncestor example three', () => {
+Deno.test("lowestCommonAncestor example three", () => {
   const tree = new Tree([2, 1]);
 
   const nodes = Array.from(tree.nodes());

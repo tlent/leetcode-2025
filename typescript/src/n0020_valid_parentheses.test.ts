@@ -1,9 +1,9 @@
-import { expect, test } from 'bun:test';
-import { valid_parentheses } from './n0020_valid_parentheses';
+import { expect } from "jsr:@std/expect";
+import { valid_parentheses } from "./n0020_valid_parentheses.ts";
 
-test('isValid', () => {
-  expect(valid_parentheses('()')).toBe(true);
-  expect(valid_parentheses('()[]{}')).toBe(true);
-  expect(valid_parentheses('(]')).toBe(false);
-  expect(valid_parentheses('([])')).toBe(true);
+Deno.test("isValid", () => {
+  expect(valid_parentheses("()")).toBe(true);
+  expect(valid_parentheses("()[]{}")).toBe(true);
+  expect(valid_parentheses("(]")).toBe(false);
+  expect(valid_parentheses("([])")).toBe(true);
 });

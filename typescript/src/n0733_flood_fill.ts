@@ -2,7 +2,7 @@ export function floodFill(
   image: number[][],
   startRow: number,
   startCol: number,
-  fillColor: number
+  fillColor: number,
 ): number[][] {
   const startColor = image[startRow]![startCol];
   if (startColor === fillColor) {

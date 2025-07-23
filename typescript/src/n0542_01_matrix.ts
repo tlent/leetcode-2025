@@ -1,4 +1,4 @@
-import { Queue } from '@datastructures-js/queue';
+import { Queue } from "npm:@datastructures-js/queue";
 
 export function updateMatrix(matrix: number[][]): number[][] {
   const m = matrix.length;

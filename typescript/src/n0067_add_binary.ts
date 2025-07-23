@@ -16,5 +16,5 @@ export function addBinary(a: string, b: string): string {
     carry = Math.floor(sum / 2);
     result.push((sum % 2).toString());
   }
-  return result.reverse().join('');
+  return result.reverse().join("");
 }

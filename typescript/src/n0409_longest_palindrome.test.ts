@@ -1,8 +1,8 @@
-import { expect, test } from 'bun:test';
+import { expect } from "jsr:@std/expect";
 
-import { longestPalindrome } from './n0409_longest_palindrome';
+import { longestPalindrome } from "./n0409_longest_palindrome.ts";
 
-test('longestPalindrome', () => {
-  expect(longestPalindrome('abccccdd')).toEqual(7);
-  expect(longestPalindrome('a')).toEqual(1);
+Deno.test("longestPalindrome", () => {
+  expect(longestPalindrome("abccccdd")).toEqual(7);
+  expect(longestPalindrome("a")).toEqual(1);
 });

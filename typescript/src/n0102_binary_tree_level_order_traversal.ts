@@ -1,6 +1,6 @@
-import { Queue } from '@datastructures-js/queue';
+import { Queue } from "npm:@datastructures-js/queue";
 
-import type { TreeNode } from './utils/tree';
+import type { TreeNode } from "./utils/tree.ts";
 
 export function levelOrder(root: TreeNode | null): number[][] {
   if (!root) {

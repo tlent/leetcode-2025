@@ -1,9 +1,9 @@
-import { expect, test } from 'bun:test';
+import { expect } from "jsr:@std/expect";
 
-import { middleNode } from './n0876_middle_of_the_linked_list';
-import { List } from './utils/linked_list';
+import { middleNode } from "./n0876_middle_of_the_linked_list.ts";
+import { List } from "./utils/linked_list.ts";
 
-test('middleNode', () => {
+Deno.test("middleNode", () => {
   let list = new List([1, 2, 3, 4, 5]);
   expect(middleNode(list.head)?.value).toEqual(3);
   list = new List([1, 2, 3, 4, 5, 6]);

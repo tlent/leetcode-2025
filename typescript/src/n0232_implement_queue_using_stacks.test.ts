@@ -1,7 +1,7 @@
-import { expect, test } from 'bun:test';
-import { MyQueue } from './n0232_implement_queue_using_stacks';
+import { expect } from "jsr:@std/expect";
+import { MyQueue } from "./n0232_implement_queue_using_stacks.ts";
 
-test('MyQueue', () => {
+Deno.test("MyQueue", () => {
   const queue = new MyQueue();
   queue.push(1);
   queue.push(2);

@@ -1,4 +1,4 @@
-import type { TreeNode } from './utils/tree';
+import type { TreeNode } from "./utils/tree.ts";
 
 export function diameterOfBinaryTree(root: TreeNode | null): number {
   let max_diameter = 0;

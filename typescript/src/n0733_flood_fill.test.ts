@@ -1,7 +1,7 @@
-import { expect, test } from 'bun:test';
-import { floodFill } from './n0733_flood_fill';
+import { expect } from "jsr:@std/expect";
+import { floodFill } from "./n0733_flood_fill.ts";
 
-test('floodFill', () => {
+Deno.test("floodFill", () => {
   expect(
     floodFill(
       [
@@ -11,8 +11,8 @@ test('floodFill', () => {
       ],
       1,
       1,
-      2
-    )
+      2,
+    ),
   ).toEqual([
     [2, 2, 2],
     [2, 2, 0],
@@ -27,8 +27,8 @@ test('floodFill', () => {
       ],
       0,
       0,
-      0
-    )
+      0,
+    ),
   ).toEqual([
     [0, 0, 0],
     [0, 0, 0],

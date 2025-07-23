@@ -21,8 +21,8 @@ export function isPalindrome(s: string): boolean {
 
 function isAlphanumeric(character: string): boolean {
   return (
-    ('a' <= character && character <= 'z') ||
-    ('A' <= character && character <= 'Z') ||
-    ('0' <= character && character <= '9')
+    ("a" <= character && character <= "z") ||
+    ("A" <= character && character <= "Z") ||
+    ("0" <= character && character <= "9")
   );
 }

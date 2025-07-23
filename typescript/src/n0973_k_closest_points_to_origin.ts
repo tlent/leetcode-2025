@@ -1,11 +1,11 @@
-import { PriorityQueue } from '@datastructures-js/priority-queue';
+import { PriorityQueue } from "npm:@datastructures-js/priority-queue";
 
 const distance = ([x, y]: [number, number]) => x * x + y * y;
 
 // O(n log n)
 export function kClosest(
   points: [number, number][],
-  k: number
+  k: number,
 ): [number, number][] {
   points.sort((a, b) => distance(a) - distance(b));
   return points.slice(0, k);
@@ -14,7 +14,7 @@ export function kClosest(
 // O(n log k)
 export function kClosestHeap(
   points: [number, number][],
-  k: number
+  k: number,
 ): [number, number][] {
   const heap = new PriorityQueue<[number, number]>((a, b) => {
     return distance(b) - distance(a);

@@ -1,4 +1,4 @@
-import { Node } from './utils/graph';
+import { Node } from "./utils/graph.ts";
 
 export function cloneGraph(node: Node | null): Node | null {
   if (!node) {

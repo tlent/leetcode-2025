@@ -1,6 +1,6 @@
 export function firstBadVersion(
   n: number,
-  isBadVersion: (version: number) => boolean
+  isBadVersion: (version: number) => boolean,
 ): number {
   let start = 0;
   let end = n;

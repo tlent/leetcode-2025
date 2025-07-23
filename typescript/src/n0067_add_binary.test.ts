@@ -1,8 +1,8 @@
-import { expect, test } from 'bun:test';
+import { expect } from "jsr:@std/expect";
 
-import { addBinary } from './n0067_add_binary';
+import { addBinary } from "./n0067_add_binary.ts";
 
-test('addBinary', () => {
-  expect(addBinary('11', '1')).toEqual('100');
-  expect(addBinary('1010', '1011')).toEqual('10101');
+Deno.test("addBinary", () => {
+  expect(addBinary("11", "1")).toEqual("100");
+  expect(addBinary("1010", "1011")).toEqual("10101");
 });

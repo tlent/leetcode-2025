@@ -1,9 +1,9 @@
 export function insert(
   intervals: number[][],
-  newInterval: number[]
+  newInterval: number[],
 ): number[][] {
   let start = intervals.findIndex(
-    (interval) => interval[1]! >= newInterval[0]!
+    (interval) => interval[1]! >= newInterval[0]!,
   );
   if (start === -1) {
     start = intervals.length;

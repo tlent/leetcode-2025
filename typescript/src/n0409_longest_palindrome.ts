@@ -21,10 +21,10 @@ export function longestPalindrome(s: string): number {
 function toIndex(c: string): number {
   const charCode = c.charCodeAt(0);
   if (97 <= charCode && charCode <= 122) {
-    return c.charCodeAt(0) - 'a'.charCodeAt(0);
+    return c.charCodeAt(0) - "a".charCodeAt(0);
   } else if (65 <= charCode && charCode <= 90) {
-    return 26 + c.charCodeAt(0) - 'A'.charCodeAt(0);
+    return 26 + c.charCodeAt(0) - "A".charCodeAt(0);
   } else {
-    throw new Error('invalid character');
+    throw new Error("invalid character");
   }
 }

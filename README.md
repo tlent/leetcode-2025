@@ -8,7 +8,7 @@ clean, idiomatic coding patterns with a focus on optimal time and space complexi
 ### Required Tools
 
 - **Python**: [uv](https://docs.astral.sh/uv/getting-started/installation/)
-- **TypeScript**: [bun](https://bun.sh/docs/installation)
+- **TypeScript**: [deno](https://docs.deno.com/runtime/getting_started/installation/)
 - **Rust**: [cargo](https://www.rust-lang.org/tools/install),
   [clippy](https://github.com/rust-lang/rust-clippy)
 
@@ -18,25 +18,22 @@ clean, idiomatic coding patterns with a focus on optimal time and space complexi
 cd python
 uv sync --dev       # Install dependencies
 
-uv run ruff format  # Format code
-uv run ruff check   # Lint code
+uv run ruff format  # Format
+uv run ruff check   # Lint
 uv run mypy src/    # Type check
 uv run pytest       # Run tests
-
-uv run ruff format && uv run ruff check && uv run mypy src/ && uv run pytest
 ```
 
 ### TypeScript Usage
 
 ```bash
 cd typescript
-bun install                 # Install dependencies
+deno install                # Install dependencies
 
-bunx biome check --write .  # Format and lint
-bunx tsc --noEmit           # Type check
-bun test                    # Run tests
-
-bunx biome check --write && bunx tsc --noEmit && bun test
+deno fmt                    # Format
+deno lint                   # Lint
+deno check                  # Type check
+deno test                   # Run tests
 ```
 
 ### Rust Usage
@@ -44,12 +41,10 @@ bunx biome check --write && bunx tsc --noEmit && bun test
 ```bash
 cd rust
 
-cargo fmt     # Format code
+cargo fmt     # Format
+cargo clippy  # Lint
 cargo check   # Type check
-cargo clippy  # Lint code
 cargo test    # Run tests
-
-cargo fmt && cargo check && cargo clippy && cargo test
 ```
 
 ## Pre-commit Hooks
@@ -77,7 +72,7 @@ Workflow files: [rust](https://github.com/tlent/leetcode-2025/blob/main/.github/
 - **LeetCode examples**: All test cases use actual LeetCode problem examples
 - **Separate test files**: `.test.rs`, `.test.ts`, `_test.py` files alongside
   implementations
-- **Test frameworks**: `cargo test`, `bun test`, `pytest`
+- **Test frameworks**: `cargo test`, `deno test`, `pytest`
 
 ## License
 

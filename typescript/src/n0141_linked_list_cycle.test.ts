@@ -1,8 +1,8 @@
-import { expect, test } from 'bun:test';
-import { hasCycle } from './n0141_linked_list_cycle';
-import { List } from './utils/linked_list';
+import { expect } from "jsr:@std/expect";
+import { hasCycle } from "./n0141_linked_list_cycle.ts";
+import { List } from "./utils/linked_list.ts";
 
-test('hasCycle example 1', () => {
+Deno.test("hasCycle example 1", () => {
   const list = new List([3, 2, 0, -4]);
 
   const nodes = Array.from(list.nodes());
@@ -11,7 +11,7 @@ test('hasCycle example 1', () => {
   expect(hasCycle(list.head)).toBe(true);
 });
 
-test('hasCycle example 2', () => {
+Deno.test("hasCycle example 2", () => {
   const list = new List([1, 2]);
 
   const nodes = Array.from(list.nodes());
@@ -20,7 +20,7 @@ test('hasCycle example 2', () => {
   expect(hasCycle(list.head)).toBe(true);
 });
 
-test('hasCycle example 3', () => {
+Deno.test("hasCycle example 3", () => {
   const list = new List([1]);
   expect(hasCycle(list.head)).toBe(false);
 });
