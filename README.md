@@ -65,7 +65,7 @@ uv run pre-commit --all-files
 All code is automatically checked on push and pull requests to the main branch
 using GitHub Actions.
 
-Workflow files: [rust](https://github.com/tlent/leetcode-2025/blob/main/.github/workflows/rust-ci.yml), [typescript](https://github.com/tlent/leetcode-2025/blob/main/.github/workflows/python-ci.yml), [python](https://github.com/tlent/leetcode-2025/blob/main/.github/workflows/typescript-ci.yml)
+Workflow files: [rust](https://github.com/tlent/leetcode-2025/blob/main/.github/workflows/rust-ci.yml), [typescript](https://github.com/tlent/leetcode-2025/blob/main/.github/workflows/typescript-ci.yml), [python](https://github.com/tlent/leetcode-2025/blob/main/.github/workflows/python-ci.yml)
 
 ## Testing Approach
 
