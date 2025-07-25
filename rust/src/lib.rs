@@ -123,6 +123,7 @@ mod n0876_middle_of_the_linked_list_tests;
 pub mod n0003_longest_substring_without_repeating_characters;
 pub mod n0004_median_of_two_sorted_arrays;
 pub mod n0015_3_sum;
+pub mod n0033_search_in_rotated_sorted_array;
 pub mod n0053_maximum_subarray;
 pub mod n0057_insert_interval;
 pub mod n0102_binary_tree_level_order_traversal;
